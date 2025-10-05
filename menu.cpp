@@ -24,13 +24,13 @@ void ejecutar() {
 
 void mostrarMenuPrincipal() {
     cout << "========================================" << endl;
-    cout << "    SISTEMA DE GESTIÓN DE LIBRERÍA     " << endl;
+    cout << "    SISTEMA DE GESTION DE LIBRERIA     " << endl;
     cout << "========================================" << endl;
-    cout << "1. Gestión de Autores" << endl;
-    cout << "2. Gestión de Libros" << endl;
-    cout << "3. Gestión de Socios" << endl;
-    cout << "4. Gestión de Suscripciones" << endl;
-    cout << "5. Gestión de Préstamos" << endl;
+    cout << "1. Gestion de Autores" << endl;
+    cout << "2. Gestion de Libros" << endl;
+    cout << "3. Gestion de Socios" << endl;
+    cout << "4. Gestion de Suscripciones" << endl;
+    cout << "5. Gestion de Préstamos" << endl;
     cout << "6. Reportes" << endl;
     cout << "0. Salir" << endl;
     cout << "========================================" << endl;
