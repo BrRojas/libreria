@@ -67,9 +67,10 @@ void Socio::Cargar(){
     }
 }
 void Socio::Mostrar(){
-    cout << "El id del socio es: ";
-    cout << "El telefono es: ";
-    cout << "La categoria es: ";
-    cout << "Se encuentra en estado: ";
-    cout << "incluyo donacion?: ";
+    cout << "El id del socio es: " << IdSocio << endl;
+    cout << "El telefono es: " << Telefono << endl;
+    cout << "La categoria es: " << Categoria << endl;
+    cout << "Se encuentra en estado: " << Estado << endl;
+    cout << "incluyo donacion?: " << IncluyeDonacion << endl;
 }
+
