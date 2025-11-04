@@ -1,78 +1,74 @@
+
 #include "Betados.h"
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 Betados::Betados() {
     IdBetados = 0;
-    AsignacionBetados = 0;
-    RestaPuntos = 0;
+    RestaPuntos = -5;
 }
 
 void Betados::setIdBetados(int id) {
-    if (id > 0)
+  if(id > 0) {
         IdBetados = id;
-    else {
-        cout << "⚠️  ID inválido. Debe ser un número mayor que 0.\n";
+    } else {
+        cout << "ID inválido. Debe ser mayor que 0." << endl;
         IdBetados = 0;
     }
 }
-
-void Betados::setAsignacionBetados(int puntos) {
-    if (puntos >= 0)
-        AsignacionBetados = puntos;
-    else {
-        cout << "⚠️  Asignación inválida. No se pueden asignar puntos negativos.\n";
-        AsignacionBetados = 0;
-    }
-}
-
-void Betados::setRestaPuntos(int puntos) {
-    if (puntos < 0) {
-        cout << "⚠️  No se puede restar una cantidad negativa.\n";
-        return;
+void Betados::setRestaPuntos(int puntos){
+    if (puntos >= 5) {
+            RestaPuntos += puntos;
+        } else {
+            cout << "Error: no hay suficientes puntos para restar. ";
+        }
     }
 
-    if (puntos > AsignacionBetados) {
-        cout << "⚠️  No se pueden restar más puntos de los asignados.\n";
-        RestaPuntos = AsignacionBetados; // o podrías dejarlo igual que antes
-    } else {
-        RestaPuntos = puntos;
+int Betados::getIdBetados (){
+    return IdBetados;
     }
-}
 
-// ----------------------
-// GETTERS
-// ----------------------
+int Betados::getRestaPuntos(){
+    return RestaPuntos;
+    }
 
-int Betados::getIdBetados() { return IdBetados; }
-
-int Betados::getAsignacionBetados() { return AsignacionBetados; }
-
-int Betados::getRestaPuntos() { return RestaPuntos; }
-
-// ----------------------
-// FUNCIONES EXTRA
-// ----------------------
-
-void Betados::CargarBetados() {
-    int id, puntos, resta;
-
+void Betados::CargarBetados(){
+    int id;
     cout << "Ingrese ID del betado: ";
     cin >> id;
+
     setIdBetados(id);
 
-    cout << "Ingrese puntos asignados: ";
-    cin >> puntos;
-    setAsignacionBetados(puntos);
-
-    cout << "Ingrese puntos a restar: ";
-    cin >> resta;
-    setRestaPuntos(resta);
+    if(IdBetados != 0) {
+        FILE* archivo = fopen("betados.dat", "ab");
+        if(archivo != nullptr) {
+            fwrite(&IdBetados, sizeof(int), 1, archivo);
+            fclose(archivo);
+            cout << "Betado agregado y guardado correctamente." << endl;
+        } else {
+            cout << "No se pudo abrir el archivo." << endl;
+        }
+    }
 }
 
-void Betados::MostrarBetados() {
-    cout << "\n===== Datos del Betado =====" << endl;
-    cout << "ID: " << IdBetados << endl;
-    cout << "Puntos asignados: " << AsignacionBetados << endl;
-    cout << "Puntos restados: " << RestaPuntos << endl;
-}
+void Betados::MostrarBetados(){
+    FILE* archivo = fopen("betados.dat", "rb");
+    if(archivo != nullptr) {
+        int id;
+        int contador = 0;
+        cout << "Lista de betados:" << endl;
+        while(fread(&id, sizeof(int), 1, archivo) == 1) {
+            contador++;
+            cout << contador << ". ID: " << id << endl;
+        }
+        if(contador == 0) {
+            cout << "No hay betados cargados." << endl;
+        }
+        fclose(archivo);
+    } else {
+        cout << "No se pudo abrir el archivo." << endl;
+    }
+    }
+
+
