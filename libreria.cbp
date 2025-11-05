@@ -34,11 +34,22 @@
 		</Compiler>
 		<Unit filename="Autor.cpp" />
 		<Unit filename="Autor.h" />
+		<Unit filename="Betados.cpp" />
+		<Unit filename="Betados.h" />
+		<Unit filename="CSocio.cpp" />
+		<Unit filename="CSocio.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
-		<Unit filename="Menu.cpp" />
+		<Unit filename="Libro.cpp" />
+		<Unit filename="Libro.h" />
 		<Unit filename="Menu.h" />
+		<Unit filename="Prestamo.cpp" />
+		<Unit filename="Prestamo.h" />
+		<Unit filename="Suscripcion.cpp" />
+		<Unit filename="Suscripcion.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="rlutil.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
