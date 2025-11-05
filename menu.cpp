@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Menu.h"
+#include "Betados.h"
 
 using namespace std;
 
@@ -17,8 +18,9 @@ void ejecutar() {
             case 4: cout << "menuSuscripciones" << endl; break;
             case 5: cout << "menuPrestamos" << endl; break;
             case 6: cout << "menuReportes" << endl; break;
-            case 0: cout << "¡Gracias por usar el sistema de libreria!" << endl; break;
-            default: cout << "Opción inválida. Intente nuevamente." << endl;
+            case 7: cout << "menuBetados" << endl; mostrarMenuBetados();
+            case 0: cout << "ï¿½Gracias por usar el sistema de libreria!" << endl; break;
+            default: cout << "Opciï¿½n invï¿½lida. Intente nuevamente." << endl;
         }
     } while (opcion != 0);
 }
@@ -33,6 +35,26 @@ void mostrarMenuPrincipal() {
     cout << "4. Gestion de Suscripciones" << endl;
     cout << "5. Gestion de Prestamos" << endl;
     cout << "6. Reportes" << endl;
+    cout << "7. Gestion de Betados" << endl;
     cout << "0. Salir" << endl;
     cout << "========================================" << endl;
+}
+
+
+void mostrarMenuBetados() {
+    // cout << "========================================" << endl;
+    // cout << "    SISTEMA DE GESTION DE Betados     " << endl;
+    // cout << "========================================" << endl;
+    // cout << "1. Gestion de Autores" << endl;
+    // cout << "2. Gestion de Libros" << endl;
+    // cout << "3. Gestion de Socios" << endl;
+    // cout << "0. Salir" << endl;
+    // cout << "========================================" << endl;
+    Betados betado;
+
+    betado.MostrarBetados();
+}
+
+void mostrarMenuLibros() {
+
 }

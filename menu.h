@@ -3,6 +3,7 @@
 
 void ejecutar();
 void mostrarMenuPrincipal();
+void mostrarMenuBetados();
 
 #endif
 

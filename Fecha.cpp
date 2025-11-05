@@ -9,19 +9,19 @@ static bool esBisiesto(int a){
 
 static int diasEnMes(int m, int a){
     if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
-        {return 31};
+        return 31;
     else if (m == 4 || m == 6 || m == 9 || m == 11)
-        {return 30};
+        return 30;
     else if (m == 2)
-        {return esBisiesto(a) ? 29 : 28};
-    else {return 30};
+        return esBisiesto(a) ? 29 : 28;
+    else return 30;
 }
 
 static bool validacionFecha(int d, int m, int a){
     if (a < 1)
-        {return false};
+        return false;
     if (m < 1 || m > 12)
-        {return false};
+        return false;
     int maxD = diasEnMes(m, a);
     return d >= 1 && d <= maxD;
 }

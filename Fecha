@@ -1,6 +1,0 @@
-#include "Fecha."
-
-Fecha::Fecha()
-{
-    //ctor
-}

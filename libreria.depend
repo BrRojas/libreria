@@ -9,3 +9,62 @@
 	<iostream>
 	"menu.h"
 
+1762216914 source:c:\users\facundo\desktop\libreria\autor.cpp
+	<iostream>
+	<cstring>
+	"Autor.h"
+
+1762216914 c:\users\facundo\desktop\libreria\autor.h
+	"Fecha.h"
+
+1762216914 c:\users\facundo\desktop\libreria\fecha.h
+
+1762280957 source:c:\users\facundo\desktop\libreria\betados.cpp
+	"Betados.h"
+	<iostream>
+	<cstring>
+
+1762280957 c:\users\facundo\desktop\libreria\betados.h
+	<string>
+
+1762216914 source:c:\users\facundo\desktop\libreria\csocio.cpp
+	<iostream>
+	<cstring>
+	"CSocio.h"
+
+1762216914 c:\users\facundo\desktop\libreria\csocio.h
+	<string>
+
+1762216914 source:c:\users\facundo\desktop\libreria\main.cpp
+	<iostream>
+	"Menu.h"
+
+1762384291 c:\users\facundo\desktop\libreria\menu.h
+
+1762383519 source:c:\users\facundo\desktop\libreria\menu.cpp
+	<iostream>
+	"Menu.h"
+
+1762381891 source:c:\users\facundo\desktop\libreria\suscripcion.cpp
+
+1762384084 source:c:\users\facundo\desktop\libreria\prestamo.cpp
+	"Prestamo.h"
+	"Fecha.h"
+	<cstring>
+	<iostream>
+
+1762384001 source:c:\users\facundo\desktop\libreria\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1762384068 source:c:\users\facundo\desktop\libreria\libro.cpp
+	"Libro.h"
+	<cstring>
+	<iostream>
+
+1762384019 c:\users\facundo\desktop\libreria\libro.h
+	<cstring>
+
+1762384023 c:\users\facundo\desktop\libreria\prestamo.h
+	"Fecha.h"
+
