@@ -60,16 +60,16 @@ using namespace std;
 
     // Getters
     int Prestamo::getIdPrestamo() {
-        return this->idPrestamo;
+        return idPrestamo;
     }
     Fecha Prestamo::getFechaPrestamo() {
-        return this->fechaPrestamo;
+        return fechaPrestamo;
     }
     Fecha Prestamo::getFechaDevolucion() {
-        return this->fechaDevolucion;
+        return fechaDevolucion;
     }
     bool Prestamo::getEstado() {
-        return this->estado;
+        return estado;
     }
 
     // Setters

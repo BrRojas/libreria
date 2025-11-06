@@ -39,15 +39,17 @@
 	<iostream>
 	"Menu.h"
 
-1762384291 c:\users\facundo\desktop\libreria\menu.h
+1762398794 c:\users\facundo\desktop\libreria\menu.h
 
-1762383519 source:c:\users\facundo\desktop\libreria\menu.cpp
+1762401338 source:c:\users\facundo\desktop\libreria\menu.cpp
 	<iostream>
 	"Menu.h"
+	"Betados.h"
+	"Libro.h"
 
 1762381891 source:c:\users\facundo\desktop\libreria\suscripcion.cpp
 
-1762384084 source:c:\users\facundo\desktop\libreria\prestamo.cpp
+1762397816 source:c:\users\facundo\desktop\libreria\prestamo.cpp
 	"Prestamo.h"
 	"Fecha.h"
 	<cstring>
@@ -57,14 +59,14 @@
 	<iostream>
 	"Fecha.h"
 
-1762384068 source:c:\users\facundo\desktop\libreria\libro.cpp
+1762400501 source:c:\users\facundo\desktop\libreria\libro.cpp
 	"Libro.h"
 	<cstring>
 	<iostream>
 
-1762384019 c:\users\facundo\desktop\libreria\libro.h
+1762401257 c:\users\facundo\desktop\libreria\libro.h
 	<cstring>
 
-1762384023 c:\users\facundo\desktop\libreria\prestamo.h
+1762396286 c:\users\facundo\desktop\libreria\prestamo.h
 	"Fecha.h"
 

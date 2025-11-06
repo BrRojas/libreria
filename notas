@@ -1,0 +1,3 @@
+char genero[35], editorial[35]; // deberia ser un numero o algo asi
+
+borrar libro

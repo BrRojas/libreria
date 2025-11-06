@@ -7,10 +7,15 @@ using namespace std;
         return;
     }
 
-    int Libro::Cargar()	{
+    void Libro::cargar(){
         char isbn[20], genero[35], titulo[40], editorial[35];
         int cantidadEjemplares, vecesPrestado, idAutor;
         bool estado;
+
+
+        cout << "Ingrese el ID del Autor: ";
+        cin >> idAutor;
+        cin.ignore();
         cout << "Ingrese el ISBN: ";
         cin.getline(isbn, 20);
         cout << "Ingrese el Genero: ";
@@ -25,8 +30,6 @@ using namespace std;
         cin >> vecesPrestado;
         cout << "Ingrese el Estado (1 para activo, 0 para inactivo): ";
         cin >> estado;
-        cout << "Ingrese el ID del Autor: ";
-        cin >> idAutor;
 
         setIsbn(isbn);
         setGenero(genero);
@@ -36,49 +39,130 @@ using namespace std;
         setVecesPrestado(vecesPrestado);
         setEstado(estado);
         setIdAutor(idAutor);
-        return 0;
+
+        int idNuevo = 1;
+        FILE *p = fopen("libros.dat", "rb");
+        if(p != NULL) {
+            fseek(p, 0, SEEK_END);
+            idNuevo = ftell(p) / sizeof(Libro) + 1;
+            fclose(p);
+        }
+
+        setId(idNuevo);
+
+        FILE* archivo = fopen("libros.dat", "ab");
+        
+        if(archivo == NULL) {
+            cout << "No se pudo abrir el archivo de libros" << endl;
+            return;
+        }
+
+        if(fwrite(this, sizeof(Libro), 1, archivo) != 1) {
+            cout << "Error intentando agregar el libro." << endl;
+            return;
+        }
+        fclose(archivo);
+
+        return;
     }
 
 
     void Libro::mostrar() {
-        cout << "ISBN: " << getIsbn() << endl;
-        cout << "Genero: " << getGenero() << endl;
-        cout << "Titulo: " << getTitulo() << endl;
-        cout << "Editorial: " << getEditorial() << endl;
-        cout << "Cantidad de Ejemplares: " << getCantidadEjemplares() << endl;
-        cout << "Veces Prestado: " << getVecesPrestado() << endl;
+        int id;
+        cout << endl <<"Ingresar el id del libro: ";
+        cin >> id;
+
+        FILE *p = fopen("libros.dat", "rb");
+        while(id == 0) {
+            cout << endl << "Ingresar una id valida: ";
+            cin >> id;
+        }
+        
+            FILE* archivo = fopen("libros.dat", "rb");
+            if(archivo == nullptr) {
+                cout << "No hay ningun libro agregado hasta el momento" << endl;
+                return;
+            }
+
+
+                Libro aux;
+                bool encontrado = false;
+                while(fread(&aux,sizeof(Libro), 1, archivo ) == 1) {
+                    if(aux.getId() == id) {
+                        encontrado = true;
+                        libroAux(aux);
+                        break;
+                    }
+                }
+
+                fclose(archivo);
+
+                if(!encontrado) {
+                    cout << "No encontramos el libro que buscaba" << endl;
+                }
+                
+            
+            
     }
 
-    void Libro::MostrarLibros() {
+    void Libro::mostrarLibros() {
+        FILE* archivo = fopen("libros.dat", "rb");
+        if(archivo != nullptr) {
+            cout << "Lista de libros" << endl;
+            Libro aux;
+            while(fread(&aux, sizeof(Libro), 1, archivo) == 1) {
+                libroAux(aux);
+            }
+            fclose(archivo);
+        } else {
+            cout << "No se pudo abrir el archivo por lo que no hay libros." << endl;
+        }
     }
 
+    //borrar libro function
 
+
+    void Libro::libroAux(Libro aux) {
+        cout << endl << "ID: " << aux.id << endl;
+        cout << "Titulo: " << aux.titulo << endl;
+        cout << "Autor: " << aux.idAutor << endl;
+        cout << "ISBN: " << aux.isbn << endl;
+        cout << "Genero: " << aux.genero << endl;
+        cout << "Editorial: " << aux.editorial << endl;
+        cout << "Cantidad de ejemplares: " << aux.cantidadEjemplares << endl;
+        cout << "Veces Prestado: " << aux.vecesPrestado << endl;
+        cout << "Estado: " << aux.estado << endl;
+    }
 // Getters
 
     char* Libro::getIsbn() {
-        return this->isbn;
+        return isbn;
+    }
+
+    int Libro::getId(){
+        return idAutor;
     }
 
     char* Libro::getGenero(){
-        return this->genero;
+        return genero;
     }
     char* Libro::getTitulo(){
-        return this->titulo;
+        return titulo;
     }
     char* Libro::getEditorial(){
-        return this->editorial;
+        return editorial;
     }
     int Libro::getCantidadEjemplares(){
-        return this->cantidadEjemplares;
+        return cantidadEjemplares;
     }
     int Libro::getVecesPrestado(){
-        return this->vecesPrestado;
+        return vecesPrestado;
     }
     bool Libro::getEstado(){
-        return this->estado;
+        return estado;
     }
     int Libro::getIdAutor(){
-        return this->idAutor;
+        return idAutor;
     }
 
 
@@ -87,6 +171,10 @@ using namespace std;
     void Libro::setIsbn(char* isbn)
     {
         strcpy(this->isbn, isbn);
+    }
+    
+    void Libro::setId(int id) {
+        this->id = id;
     }
 
     void Libro::setGenero(char* genero)

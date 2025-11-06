@@ -3,11 +3,9 @@
 
 class Prestamo {
     private:
-        int idPrestamo;
-        int idSocio;
+        int idPrestamo, idSocio;
         char isBn[20];
-        Fecha fechaPrestamo;
-        Fecha fechaDevolucion;
+        Fecha fechaPrestamo, fechaDevolucion;
         bool estado;
 
     public:
