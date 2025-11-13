@@ -1,16 +1,15 @@
 #pragma once
 #include <string>
-class Betados{
+class Vetados{
     private:
-        int IdBetados;
+        int IdVetados;
         int RestaPuntos;
     public:
-        Betados();
-        void setIdBetados(int);
+        Vetados();
+        void setIdVetados(int);
         void setRestaPuntos(int);
-        int getIdBetados();
+        int getIdVetados();
         int getRestaPuntos();
-        void CargarBetados();
-        void MostrarBetados();
+        void CargarVetados();
+        void MostrarVetados();
 };
-
