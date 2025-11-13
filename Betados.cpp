@@ -3,20 +3,20 @@
 #include <cstring>
 using namespace std;
 
-Betados::Betados() {
-    IdBetados = 0;
+Vetados::Vetados() {
+    IdVetados = 0;
     RestaPuntos = -5;
 }
 
-void Betados::setIdBetados(int id) {
+void Vetados::setIdVetados(int id) {
   if(id > 0) {
-        IdBetados = id;
+        IdVetados = id;
     } else {
-        cout << "ID inválido. Debe ser mayor que 0." << endl;
-        IdBetados = 0;
+        cout << "ID invÃ¡lido. Debe ser mayor que 0." << endl;
+        IdVetados = 0;
     }
 }
-void Betados::setRestaPuntos(int puntos){
+void Vetados::setRestaPuntos(int puntos){
     if (puntos >= 5) {
             RestaPuntos += puntos;
         } else {
@@ -24,50 +24,48 @@ void Betados::setRestaPuntos(int puntos){
         }
     }
 
-int Betados::getIdBetados (){
-    return IdBetados;
+int Vetados::getIdVetados (){
+    return IdVetados;
     }
 
-int Betados::getRestaPuntos(){
+int Vetados::getRestaPuntos(){
     return RestaPuntos;
     }
 
-void Betados::CargarBetados(){
+void Vetados::CargarVetados(){
     int id;
-    cout << "Ingrese ID del betado: ";
+    cout << "Ingrese ID del vetado: ";
     cin >> id;
 
-    setIdBetados(id);
+    setIdVetados(id);
 
-    if(IdBetados != 0) {
-        FILE* archivo = fopen("betados.dat", "ab");
+    if(IdVetados != 0) {
+        FILE* archivo = fopen("Vetados.dat", "ab");
         if(archivo != nullptr) {
-            fwrite(&IdBetados, sizeof(int), 1, archivo);
+            fwrite(&IdVetados, sizeof(int), 1, archivo);
             fclose(archivo);
-            cout << "Betado agregado y guardado correctamente." << endl;
+            cout << "Vetado agregado y guardado correctamente." << endl;
         } else {
             cout << "No se pudo abrir el archivo." << endl;
         }
     }
 }
 
-void Betados::MostrarBetados(){
-    FILE* archivo = fopen("betados.dat", "rb");
+void Vetados::MostrarVetados(){
+    FILE* archivo = fopen("Vetados.dat", "rb");
     if(archivo != nullptr) {
         int id;
         int contador = 0;
-        cout << "Lista de betados:" << endl;
+        cout << "Lista de vetados:" << endl;
         while(fread(&id, sizeof(int), 1, archivo) == 1) {
             contador++;
             cout << contador << ". ID: " << id << endl;
         }
         if(contador == 0) {
-            cout << "No hay betados cargados." << endl;
+            cout << "No hay vetados cargados." << endl;
         }
         fclose(archivo);
     } else {
         cout << "No se pudo abrir el archivo." << endl;
     }
     }
-
-
