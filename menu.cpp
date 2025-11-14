@@ -21,7 +21,8 @@ void ejecutar() {
                 MenuLibros();
                 break;
             case 3:
-                cout << "menuSocios" << endl;
+                rlutil::cls();
+                MenuSocio();
                 break;
             case 4:
                 cout << "menuSuscripciones" << endl;
