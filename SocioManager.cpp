@@ -1,0 +1,123 @@
+#include <iostream>
+#include <cstdio>
+#include "SocioManager.h"
+#include "VetadosManager.h"
+using namespace std;
+
+
+void SocioManager::CargarSocio() {
+    Socio s;
+
+    int id;
+    char nombre [30];
+    char categoria[30];
+    char telefono[15];
+    char estado;
+    char donacion;
+
+    cout << "Ingrese ID de socio: ";
+    cin >> id;
+    s.setIdSocio(id);
+    cin.ignore();
+
+    cout << "Ingrese nombre: ";
+    cin.getline(nombre, 50);
+    s.setNombre(nombre);
+
+    cout << "Ingrese categoria: ";
+    cin.getline(categoria, 30);
+    s.setCategoria(categoria);
+
+    cout << "Ingrese telefono: ";
+    cin.getline(telefono, 15);
+    s.setTelefono(telefono);
+
+    cout << "¿Está activo? (1=si, 0=no): ";
+    cin >> estado;
+
+    while (estado != '0' && estado != '1') {
+        cout << "ERROR. Ingrese solo 1 o 0: ";
+        cin >> estado;
+    }
+    s.setEstado(estado);
+
+    cout << "¿Incluye donacion? (1=si, 0=no): ";
+    cin >> donacion;
+
+    while (donacion != '0' && donacion != '1') {
+        cout << "ERROR. Ingrese solo 1 o 0: ";
+        cin >> donacion;
+    }
+
+    s.setIncluyeDonacion(donacion);
+
+    FILE* p = fopen("Socios.dat", "ab");
+    if (p == NULL) {
+        cout << "No se pudo abrir el archivo." << endl;
+        return;
+    }
+    fwrite(&s, sizeof(Socio), 1, p);
+    fclose(p);
+    cout << "Socio guardado correctamente." << endl;
+}
+
+void SocioManager::MostrarSocios() {
+    FILE* p = fopen("Socios.dat", "rb");
+    if (p == NULL) {
+        cout << "No se pudo abrir el archivo." << endl;
+        return;
+    }
+
+    Socio s;
+
+    cout << "====== LISTA DE SOCIOS ======" << endl;
+
+    while (fread(&s, sizeof(Socio), 1, p) == 1) {
+        cout << "Nombre: " << s.getNombre() << endl;
+        cout << "ID: " << s.getIdSocio() << endl;
+        cout << "Categoria: " << s.getCategoria() << endl;
+        cout << "Telefono: " << s.getTelefono() << endl;
+        cout << "Estado: " << (s.getEstado() ? "Activo" : "Inactivo") << endl;
+        cout << "Incluye donacion: " << (s.getIncluyeDonacion() ? "Si" : "No") << endl;
+        cout << "----------------------------" << endl;
+    }
+        fclose(p);
+}
+
+void SocioManager::BuscarIdSocio() {
+    FILE* p = fopen("Socios.dat", "rb");
+    if (p == NULL) {
+        cout << "No se pudo abrir el archivo." << endl;
+        return;
+    }
+
+    int buscado;
+    cout << "Ingrese ID a buscar: ";
+    cin >> buscado;
+
+    Socio s;
+    bool encontrado = false;
+
+    while (fread(&s, sizeof(Socio), 1, p) == 1) {
+        if (s.getIdSocio() == buscado) {
+            cout << "SOCIO ENCONTRADO:" << endl;
+            cout << "ID: " << s.getIdSocio() << endl;
+            cout << "Categoria: " << s.getCategoria() << endl;
+            cout << "Telefono: " << s.getTelefono() << endl;
+            cout << "Estado: " << (s.getEstado() ? "Activo" : "Inactivo") << endl;
+            cout << "Incluye donacion: " << (s.getIncluyeDonacion() ? "Si" : "No") << endl;
+            VetadosManager vm;
+            if (vm.EstaVetado(buscado)) {
+                cout << "ATENCION: ESTE SOCIO ESTA VETADO" << endl;
+            }
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado)
+        cout << "No existe un socio con ese ID." << endl;
+
+    fclose(p);
+}
+
