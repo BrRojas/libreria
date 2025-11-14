@@ -6,5 +6,6 @@ void mostrarMenuPrincipal();
 void mostrarMenuBetados();
 void MenuLibros();
 void MenuVetados();
+void MenuSocio();
 #endif
 
