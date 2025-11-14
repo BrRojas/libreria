@@ -5,6 +5,6 @@ void ejecutar();
 void mostrarMenuPrincipal();
 void mostrarMenuBetados();
 void MenuLibros();
-
+void MenuVetados();
 #endif
 
