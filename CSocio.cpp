@@ -5,25 +5,36 @@ using namespace std;
 
 Socio::Socio(){
     IdSocio = 0;
+    strcpy(Nombre, "SIN NOMBRE");
     strcpy(Categoria, "S/C");
     strcpy(Telefono, "000000000");
-    Estado= false;
-    IncluyeDonacion= false;
+    Estado = '0';
+    IncluyeDonacion = '0';
 }
-void Socio::setIdSocio(int){
-    IdSocio = 1;
+void Socio::setIdSocio(int id){
+    IdSocio = id;
+}
+void Socio::setNombre(const char *nom) {
+   strcpy(Nombre, nom);
 }
 void Socio::setCategoria(char *Cat){
     strcpy(Categoria, Cat);
 }
-void Socio::setTelefono(char *tel){
-    strcpy(Telefono, tel);
+void Socio::setTelefono(char *Tel) {
+    strcpy(Telefono, Tel);
 }
-void Socio::setEstado(bool){
-    Estado = false;
+void Socio::setEstado(char e) {
+    Estado = e;
 }
+void Socio::setIncluyeDonacion(char d) {
+    IncluyeDonacion = d;
+}
+
 int Socio::getIdSocio(){
     return IdSocio;
+}
+const char* Socio::getNombre() {
+    return Nombre;
 }
 char *Socio::getCategoria(){
     return Categoria;
@@ -31,46 +42,10 @@ char *Socio::getCategoria(){
 char *Socio::getTelefono(){
     return Telefono;
 }
-bool Socio::getEstado(){
+char Socio::getEstado(){
     return Estado;
 }
-bool Socio::getIncluyeDonacion(){
+char Socio::getIncluyeDonacion(){
     return IncluyeDonacion;
-}
-
-void Socio::Cargar(){
-    cout << "Ingrese el numero de socio: ";
-    cin >> IdSocio;
-    cout << "Ingrese la categoria del socio: ";
-    cin >> Categoria;
-    cin.ignore();
-    cin.getline (Categoria, 30);
-    cout << "Ingrese el telefono del socio: ";
-    cin >> Telefono;
-    cin.ignore();
-    cin.getline (Telefono, 15);
-    cout << "el socio se encuentra activo?: ";
-    cin >> Estado;
-    if (Estado==false){
-        cout << "esta inactivo";
-    }
-    else {
-        cout << "esta activo";
-    }
-    cout << "el socio incluyo donacion?: ";
-    cin >> IncluyeDonacion;
-    if (IncluyeDonacion==false){
-        cout << "No dio donacion";
-    }
-    else {
-        cout << "Es generoso y dono! ";
-    }
-}
-void Socio::Mostrar(){
-    cout << "El id del socio es: " << IdSocio << endl;
-    cout << "El telefono es: " << Telefono << endl;
-    cout << "La categoria es: " << Categoria << endl;
-    cout << "Se encuentra en estado: " << Estado << endl;
-    cout << "incluyo donacion?: " << IncluyeDonacion << endl;
 }
 
