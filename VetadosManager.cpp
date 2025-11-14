@@ -77,3 +77,20 @@ void VetadosManager::BuscarPorID() {
 
     fclose(archivo);
 }
+
+bool VetadosManager::EstaVetado(int idBuscado) {
+    FILE* archivo = fopen("Vetados.dat", "rb");
+    if (archivo == nullptr) return false;
+
+    Vetados arc;
+
+    while (fread(&arc, sizeof(Vetados), 1, archivo) == 1) {
+        if (arc.getIdVetados() == idBuscado) {
+            fclose(archivo);
+            return true;
+        }
+    }
+
+    fclose(archivo);
+    return false;
+}
