@@ -9,4 +9,6 @@ class VetadosManager{
         void CargarVetados();
         void MostrarVetados();
         void BuscarPorID();
+        bool EstaVetado(int id);
 };
+
