@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Menu.h"
-#include "Betados.h"
+#include "rlutil.h"
 #include "Libro.h"
-
+#include "MenuVetados.h"
 using namespace std;
 
 void ejecutar() {
@@ -17,10 +17,10 @@ void ejecutar() {
                 cout << "menuAutores" << endl;
                 break;
             case 2:
+                rlutil::cls();
                 MenuLibros();
                 break;
             case 3:
-
                 cout << "menuSocios" << endl;
                 break;
             case 4:
@@ -33,8 +33,8 @@ void ejecutar() {
                 cout << "menuReportes" << endl;
                 break;
             case 7:
-                cout << "menuBetados" << endl;
-                mostrarMenuBetados();
+                rlutil::cls();
+                MenuVetados();
             case 0:
                 cout << "�Gracias por usar el sistema de libreria!" << endl;
                 break;
@@ -59,20 +59,6 @@ void mostrarMenuPrincipal() {
     cout << "========================================" << endl;
 }
 
-
-void mostrarMenuBetados() {
-    // cout << "========================================" << endl;
-    // cout << "    SISTEMA DE GESTION DE Betados     " << endl;
-    // cout << "========================================" << endl;
-    // cout << "1. Gestion de Autores" << endl;
-    // cout << "2. Gestion de Libros" << endl;
-    // cout << "3. Gestion de Socios" << endl;
-    // cout << "0. Salir" << endl;
-    // cout << "========================================" << endl;
-    Betados betado;
-
-    betado.MostrarBetados();
-}
 
 void MenuLibros() {
     int opcion;
