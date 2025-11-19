@@ -2,6 +2,7 @@
 #include "Betados.h"
 #include <iostream>
 #include <cstring>
+#include <cstdio>
 using namespace std;
 
 

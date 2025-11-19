@@ -19,33 +19,36 @@
 
 1762216914 c:\users\facundo\desktop\libreria\fecha.h
 
-1762280957 source:c:\users\facundo\desktop\libreria\betados.cpp
+1763489576 source:c:\users\facundo\desktop\libreria\betados.cpp
 	"Betados.h"
 	<iostream>
 	<cstring>
 
-1762280957 c:\users\facundo\desktop\libreria\betados.h
+1763489576 c:\users\facundo\desktop\libreria\betados.h
 	<string>
 
-1762216914 source:c:\users\facundo\desktop\libreria\csocio.cpp
+1763489576 source:c:\users\facundo\desktop\libreria\csocio.cpp
 	<iostream>
 	<cstring>
 	"CSocio.h"
 
-1762216914 c:\users\facundo\desktop\libreria\csocio.h
+1763489576 c:\users\facundo\desktop\libreria\csocio.h
 	<string>
 
-1762216914 source:c:\users\facundo\desktop\libreria\main.cpp
+1763489573 source:c:\users\facundo\desktop\libreria\main.cpp
 	<iostream>
 	"Menu.h"
 
-1762398794 c:\users\facundo\desktop\libreria\menu.h
+1763489576 c:\users\facundo\desktop\libreria\menu.h
 
-1762401338 source:c:\users\facundo\desktop\libreria\menu.cpp
+1763522160 source:c:\users\facundo\desktop\libreria\menu.cpp
 	<iostream>
 	"Menu.h"
-	"Betados.h"
+	"rlutil.h"
 	"Libro.h"
+	"MenuVetados.h"
+	"MenuLibro.h"
+	"MenuSocio.h"
 
 1762381891 source:c:\users\facundo\desktop\libreria\suscripcion.cpp
 
@@ -59,14 +62,79 @@
 	<iostream>
 	"Fecha.h"
 
-1762400501 source:c:\users\facundo\desktop\libreria\libro.cpp
+1763520493 source:c:\users\facundo\desktop\libreria\libro.cpp
 	"Libro.h"
 	<cstring>
 	<iostream>
 
-1762401257 c:\users\facundo\desktop\libreria\libro.h
+1763500752 c:\users\facundo\desktop\libreria\libro.h
 	<cstring>
 
 1762396286 c:\users\facundo\desktop\libreria\prestamo.h
 	"Fecha.h"
+
+1763500517 source:c:\users\facundo\desktop\libreria\menulibro.cpp
+	<iostream>
+	"rlutil.h"
+	"LibroManager.h"
+
+1762216914 c:\users\facundo\desktop\libreria\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1763520889 c:\users\facundo\desktop\libreria\libromanager.h
+	"Libro.h"
+
+1763520945 source:c:\users\facundo\desktop\libreria\libromanager.cpp
+	<iostream>
+	<cstdio>
+	"LibroManager.h"
+
+1763489576 source:c:\users\facundo\desktop\libreria\menuvetados.cpp
+	<iostream>
+	"Betados.h"
+	"VetadosManager.h"
+	"MenuVetados.h"
+	"rlutil.h"
+
+1763489576 c:\users\facundo\desktop\libreria\vetadosmanager.h
+	<string>
+	"Betados.h"
+
+1763521030 c:\users\facundo\desktop\libreria\menuvetados.h
+
+1763521072 c:\users\facundo\desktop\libreria\menulibro.h
+
+1763521127 c:\users\facundo\desktop\libreria\menusocio.h
+
+1763489576 source:c:\users\facundo\desktop\libreria\menusocio.cpp
+	<iostream>
+	"SocioManager.h"
+	"rlutil.h"
+
+1763489576 c:\users\facundo\desktop\libreria\sociomanager.h
+	"CSocio.h"
+
+1763489576 source:c:\users\facundo\desktop\libreria\sociomanager.cpp
+	<iostream>
+	<cstdio>
+	"SocioManager.h"
+	"VetadosManager.h"
+
+1763522164 source:c:\users\facundo\desktop\libreria\vetadosmanager.cpp
+	"VetadosManager.h"
+	"Betados.h"
+	<iostream>
+	<cstring>
+	<cstdio>
 

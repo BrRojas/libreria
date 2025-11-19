@@ -9,7 +9,6 @@ class Libro {
 
     public:
         Libro();
-        Libro(char* isbn, char* genero, char* titulo, char* editorial, int cantidadEjemplares, int vecesPrestado, bool estado, int idAutor);
         char* getIsbn();
         int getId();
         char* getGenero();

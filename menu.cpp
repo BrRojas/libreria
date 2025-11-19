@@ -3,6 +3,8 @@
 #include "rlutil.h"
 #include "Libro.h"
 #include "MenuVetados.h"
+#include "MenuLibro.h"
+#include "MenuSocio.h"
 using namespace std;
 
 void ejecutar() {
@@ -18,7 +20,7 @@ void ejecutar() {
                 break;
             case 2:
                 rlutil::cls();
-                MenuLibros();
+                MenuLibro();
                 break;
             case 3:
                 rlutil::cls();
@@ -36,6 +38,7 @@ void ejecutar() {
             case 7:
                 rlutil::cls();
                 MenuVetados();
+                break;
             case 0:
                 cout << "�Gracias por usar el sistema de libreria!" << endl;
                 break;
@@ -60,41 +63,3 @@ void mostrarMenuPrincipal() {
     cout << "========================================" << endl;
 }
 
-
-void MenuLibros() {
-    int opcion;
-    do {
-        cout << "========================================" << endl;
-        cout << "           GESTION DE LIBROS     " << endl;
-        cout << "========================================" << endl;
-        cout << "1. Agregar Libro" << endl;
-        cout << "2. Buscar Libro (id)" << endl;
-        cout << "3. Ver todos los libros" << endl;
-        cout << "4. Editar un Libro" << endl;
-        cout << "0. Volver" << endl;
-        cout << "========================================" << endl;
-
-            cout << "Seleccione una opcion: ";
-            cin >> opcion;
-            Libro lbr;
-                    switch (opcion) {
-                        case 1:
-                            lbr.cargar();
-                            break;
-                        case 2:
-                            lbr.mostrar();
-                            break;
-                        case 3:
-                            lbr.mostrarLibros();
-                            break;
-                        case 4:
-                            //  remains
-                            break;
-                        case 0:
-                            break;
-                        default:
-                            cout << "Opci�n inv�lida. Intente nuevamente." << endl;
-                            break;
-                    }
-                } while(opcion != 0);
-}
