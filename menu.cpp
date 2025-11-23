@@ -5,11 +5,13 @@
 #include "MenuVetados.h"
 #include "MenuLibro.h"
 #include "MenuSocio.h"
+#include "MenuSuscripcion.h"
 using namespace std;
 
 void ejecutar() {
     int opcion;
     do {
+        rlutil::cls();
         mostrarMenuPrincipal();
         cout << "Seleccione una opcion: ";
         cin >> opcion;
@@ -17,6 +19,8 @@ void ejecutar() {
         switch (opcion) {
             case 1:
                 cout << "menuAutores" << endl;
+                cout << "\nPresione una tecla para continuar...";
+                rlutil::anykey();
                 break;
             case 2:
                 rlutil::cls();
@@ -27,23 +31,30 @@ void ejecutar() {
                 MenuSocio();
                 break;
             case 4:
-                cout << "menuSuscripciones" << endl;
+                rlutil::cls();
+                MenuSuscripcion();
                 break;
             case 5:
                 cout << "menuPrestamos" << endl;
+                cout << "\nPresione una tecla para continuar...";
+                rlutil::anykey();
                 break;
             case 6:
                 cout << "menuReportes" << endl;
+                cout << "\nPresione una tecla para continuar...";
+                rlutil::anykey();
                 break;
             case 7:
                 rlutil::cls();
                 MenuVetados();
                 break;
             case 0:
-                cout << "�Gracias por usar el sistema de libreria!" << endl;
+                cout << "Gracias por usar el sistema de libreria" << endl;
                 break;
             default:
-                cout << "Opci�n inv�lida. Intente nuevamente." << endl;
+                cout << "Opcion invalida. Intente nuevamente." << endl;
+                cout << "\nPresione una tecla para continuar...";
+                rlutil::anykey();
         }
     } while (opcion != 0);
 }
@@ -58,7 +69,7 @@ void mostrarMenuPrincipal() {
     cout << "4. Gestion de Suscripciones" << endl;
     cout << "5. Gestion de Prestamos" << endl;
     cout << "6. Reportes" << endl;
-    cout << "7. Gestion de Betados" << endl;
+    cout << "7. Gestion de Vetados" << endl;
     cout << "0. Salir" << endl;
     cout << "========================================" << endl;
 }

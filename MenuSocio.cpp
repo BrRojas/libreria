@@ -8,6 +8,7 @@ void MenuSocio() {
     int opcion;
 
     do {
+        rlutil::cls();
         cout << "===== MENU SOCIOS ====="<< endl;
         cout << "1) Cargar socio"<< endl;
         cout << "2) Mostrar socios"<< endl;
@@ -20,7 +21,6 @@ void MenuSocio() {
         case 1:
             manager.CargarSocio();
             rlutil::anykey();
-
             break;
         case 2:
             manager.MostrarSocios();
@@ -34,6 +34,8 @@ void MenuSocio() {
             break;
         default:
             cout << "OPCION INCORRECTA" << endl;
+            cout << "\nPresione una tecla para continuar...";
+            rlutil::anykey();
         }
 
     } while (opcion != 0);

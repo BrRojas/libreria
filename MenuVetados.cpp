@@ -10,6 +10,7 @@ void MenuVetados() {
     int opcion;
 
     do {
+        rlutil::cls();
         cout << "========================================" << endl;
         cout << "    SISTEMA DE GESTION DE VETADOS       " << endl;
         cout << "========================================" << endl;
@@ -44,6 +45,8 @@ void MenuVetados() {
 
             default:
                 cout << "OPCION INCORRECTA" << endl;
+                cout << "\nPresione una tecla para continuar...";
+                rlutil::anykey();
                 break;
         }
     } while(opcion != 0);

@@ -10,11 +10,13 @@ class Suscripcion {
 
   public:
       Suscripcion();
+  void setIdSuscripcion(int);
   void setIdSocio(int);
   void setFechaInicio(Fecha);
   void setFechaFin(Fecha);
   void setEstado(bool);
   void setRenovacionAutomatica(bool);
+  int  getIdSuscripcion();
   int  getIdSocio();
   Fecha getFechaInicio();
   Fecha getFechaFin();

@@ -8,6 +8,7 @@ void MenuLibro() {
     int opcion;
 
     do {
+        rlutil::cls();
         cout << "===== MENU LIBRO ====="<< endl;
         cout << "1) Cargar libro"<< endl;
         cout << "2) Mostrar libros"<< endl;
@@ -20,7 +21,6 @@ void MenuLibro() {
         case 1:
             manager.CargarLibro();
             rlutil::anykey();
-
             break;
         case 2:
             manager.MostrarLibros();
@@ -34,6 +34,8 @@ void MenuLibro() {
             break;
         default:
             cout << "OPCION INCORRECTA" << endl;
+            cout << "\nPresione una tecla para continuar...";
+            rlutil::anykey();
         }
 
     } while (opcion != 0);
