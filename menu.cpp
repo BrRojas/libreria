@@ -6,6 +6,7 @@
 #include "MenuLibro.h"
 #include "MenuSocio.h"
 #include "MenuSuscripcion.h"
+#include "MenuPrestamo.h"
 using namespace std;
 
 void ejecutar() {
@@ -35,8 +36,7 @@ void ejecutar() {
                 MenuSuscripcion();
                 break;
             case 5:
-                cout << "menuPrestamos" << endl;
-                cout << "\nPresione una tecla para continuar...";
+                MenuPrestamo();
                 rlutil::anykey();
                 break;
             case 6:

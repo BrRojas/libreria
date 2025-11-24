@@ -47,7 +47,7 @@
 
 1763489576 c:\users\facundo\desktop\libreria\menu.h
 
-1763522160 source:c:\users\facundo\desktop\libreria\menu.cpp
+1764001090 source:c:\users\facundo\desktop\libreria\menu.cpp
 	<iostream>
 	"Menu.h"
 	"rlutil.h"
@@ -55,10 +55,13 @@
 	"MenuVetados.h"
 	"MenuLibro.h"
 	"MenuSocio.h"
+	"MenuSuscripcion.h"
+	"MenuPrestamo.h"
 
-1762381891 source:c:\users\facundo\desktop\libreria\suscripcion.cpp
+1763993580 source:c:\users\facundo\desktop\libreria\suscripcion.cpp
+	"Suscripcion.h"
 
-1762397816 source:c:\users\facundo\desktop\libreria\prestamo.cpp
+1764006083 source:c:\users\facundo\desktop\libreria\prestamo.cpp
 	"Prestamo.h"
 	"Fecha.h"
 	<cstring>
@@ -79,7 +82,7 @@
 1762396286 c:\users\facundo\desktop\libreria\prestamo.h
 	"Fecha.h"
 
-1763500517 source:c:\users\facundo\desktop\libreria\menulibro.cpp
+1764001760 source:c:\users\facundo\desktop\libreria\menulibro.cpp
 	<iostream>
 	"rlutil.h"
 	"LibroManager.h"
@@ -98,15 +101,16 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1763520889 c:\users\facundo\desktop\libreria\libromanager.h
+1763994476 c:\users\facundo\desktop\libreria\libromanager.h
 	"Libro.h"
 
-1763520945 source:c:\users\facundo\desktop\libreria\libromanager.cpp
+1764005472 source:c:\users\facundo\desktop\libreria\libromanager.cpp
 	<iostream>
 	<cstdio>
 	"LibroManager.h"
+	<vector>
 
-1763489576 source:c:\users\facundo\desktop\libreria\menuvetados.cpp
+1763993580 source:c:\users\facundo\desktop\libreria\menuvetados.cpp
 	<iostream>
 	"Betados.h"
 	"VetadosManager.h"
@@ -123,7 +127,7 @@
 
 1763521127 c:\users\facundo\desktop\libreria\menusocio.h
 
-1763489576 source:c:\users\facundo\desktop\libreria\menusocio.cpp
+1763993580 source:c:\users\facundo\desktop\libreria\menusocio.cpp
 	<iostream>
 	"SocioManager.h"
 	"rlutil.h"
@@ -277,4 +281,38 @@
 	<iostream>
 	<cstdio>
 	"SuscripcionManager.h"
+
+1763993580 c:\users\facundo\desktop\libreria\menususcripcion.h
+
+1763993580 c:\users\facundo\desktop\libreria\suscripcion.h
+	"Fecha.h"
+
+1764000559 source:c:\users\facundo\desktop\libreria\menususcripcion.cpp
+	<iostream>
+	"MenuSuscripcion.h"
+	"SuscripcionManager.h"
+	"rlutil.h"
+
+1763993580 c:\users\facundo\desktop\libreria\suscripcionmanager.h
+	"Suscripcion.h"
+
+1763993580 source:c:\users\facundo\desktop\libreria\suscripcionmanager.cpp
+	<iostream>
+	<cstdio>
+	"SuscripcionManager.h"
+
+1764001608 c:\users\facundo\desktop\libreria\menuprestamo.h
+
+1764006125 source:c:\users\facundo\desktop\libreria\prestamomanager.cpp
+	<iostream>
+	<cstdio>
+	"PrestamoManager.h"
+
+1764006303 c:\users\facundo\desktop\libreria\prestamomanager.h
+	"Prestamo.h"
+
+1764006154 source:c:\users\facundo\desktop\libreria\menuprestamo.cpp
+	<iostream>
+	"rlutil.h"
+	"PrestamoManager.h"
 

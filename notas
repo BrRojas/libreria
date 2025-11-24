@@ -1,3 +1,3 @@
-char genero[35], editorial[35]; // deberia ser un numero o algo asi
+Idsocio debe existir para poder hacer prestamo
 
-borrar libro
+el estado en prestamo borrar deberia ser estado logico o deberia ser eliminado completamente (charla)

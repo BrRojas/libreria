@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include "LibroManager.h"
+#include <vector>
 using namespace std;
 
 
@@ -113,6 +114,54 @@ void LibroManager::BuscarIdLibro() {
     }
 }
 
+void LibroManager::BorrarLibro() {
+    int id;
+    cout << "Ingresar el ID del libro: ";
+    cin >> id;
+
+    while (id <= 0) {
+        cout << "ID inválido. Ingrese un número mayor a 0: ";
+        cin >> id;
+    }
+
+    FILE* archivo = fopen("libros.dat", "rb");
+    if (!archivo) {
+        cout << "No hay ningún libro agregado hasta el momento." << endl;
+        return;
+    }
+
+    vector<Libro> libros;
+    Libro aux;
+    bool encontrado = false;
+
+    // Leer todos los libros
+    while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
+        if (aux.getId() == id) {
+            encontrado = true;
+            cout << "\nLibro encontrado y eliminado:\n";
+            LibroCout(aux);
+        } 
+        else {
+            libros.push_back(aux);   // guardar resto de libros
+        }
+    }
+    fclose(archivo);
+
+    if (!encontrado) {
+        cout << "No encontramos un libro con ese ID." << endl;
+        return;
+    }
+
+    // reescribimos todo el archivo
+    archivo = fopen("libros.dat", "wb");
+    for (const Libro& l : libros) { // esto es un for loop que va a loopear por cada libro que haya en libros (donde guardamos todos los libros)
+        fwrite(&l, sizeof(Libro), 1, archivo);
+    }
+    fclose(archivo);
+
+    cout << "Libro eliminado correctamente." << endl;
+}
+
 void LibroManager::LibroCout(Libro l) {
     cout << endl << "ID: " << l.getId() << endl;
     cout << "Titulo: " << l.getTitulo() << endl;
@@ -125,5 +174,3 @@ void LibroManager::LibroCout(Libro l) {
     cout << "Estado: " << l.getEstado() << endl;
     cout << "----------------------------";
 }
-
-//borrar libro function

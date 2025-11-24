@@ -6,5 +6,6 @@ public:
     void CargarLibro();
     void MostrarLibros();
     void BuscarIdLibro();
+    void BorrarLibro();
     void LibroCout(Libro l);
 };
