@@ -30,6 +30,10 @@ void MenuSocio() {
             manager.BuscarIdSocio();
             rlutil::anykey();
             break;
+        case 4:
+            manager.SumarPuntosManual();
+            rlutil::anykey();
+            break;
         case 0:
             break;
         default:
@@ -40,3 +44,4 @@ void MenuSocio() {
 
     } while (opcion != 0);
 }
+
