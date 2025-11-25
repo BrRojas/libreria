@@ -10,6 +10,7 @@ static void mostrarMenuSuscripcion() {
     cout << "2. Listar suscripciones" << endl;
     cout << "3. Buscar por ID de socio" << endl;
     cout << "4. Renovar automaticas (segun fecha ingresada)" << endl;
+    cout << "5. Modificar suscripcion" << endl;
     cout << "0. Volver" << endl;
 }
 
@@ -36,6 +37,10 @@ void MenuSuscripcion() {
             case 4:
                 rlutil::cls();
                 mgr.RenovarAutomaticas();
+                break;
+            case 5:
+                rlutil::cls();
+                mgr.ModificarSuscripcion();
                 break;
             case 0:
                 break;

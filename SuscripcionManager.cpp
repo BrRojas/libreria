@@ -127,3 +127,103 @@ void SuscripcionManager::SuscripcionCout(Suscripcion s) {
     cout << "Renovacion automatica: " << (s.getRenovacionAutomatica() ? 1 : 0) << endl;
     cout << "----------------------------";
 }
+
+void SuscripcionManager::ModificarSuscripcion() {
+    int idBuscado;
+    cout << "Ingresar ID de suscripcion a modificar: ";
+    cin >> idBuscado;
+
+    FILE* a = fopen(SUSC_FILE, "rb+");
+    if (a == nullptr) {
+        cout << "No hay suscripciones." << endl;
+        return;
+    }
+
+    Suscripcion aux;
+    long pos = 0;
+    bool encontrado = false;
+
+    while (fread(&aux, sizeof(Suscripcion), 1, a) == 1) {
+        if (aux.getIdSuscripcion() == idBuscado) {
+            encontrado = true;
+            break;
+        }
+        pos += sizeof(Suscripcion);
+    }
+
+    if (!encontrado) {
+        fclose(a);
+        cout << "No se encontro la suscripcion con ese ID." << endl;
+        return;
+    }
+
+    cout << "Suscripcion actual:" << endl;
+    SuscripcionCout(aux);
+    cout << endl;
+
+    int opt;
+
+    cout << "Modificar renovacion automatica? (1=si, 0=no, -1=dejar igual): ";
+    cin >> opt;
+    if (opt == 0 || opt == 1) aux.setRenovacionAutomatica(opt == 1);
+
+    cout << "Modificar fecha de inicio? (1=si, 0=no): ";
+    cin >> opt;
+    if (opt == 1) {
+        Fecha f;
+        cout << "Nueva fecha de inicio:" << endl;
+        f.cargar();
+        aux.setFechaInicio(f);
+    }
+
+    cout << "Modificar fecha de fin? (1=si, 0=no): ";
+    cin >> opt;
+    if (opt == 1) {
+        Fecha f;
+        cout << "Nueva fecha de fin:" << endl;
+        f.cargar();
+        aux.setFechaFin(f);
+    }
+
+    cout << "Modificar estado? (1=si, 0=no): ";
+    cin >> opt;
+    if (opt == 1) {
+        int est;
+        cout << "Nuevo estado (1=activo, 0=inactivo): ";
+        cin >> est;
+        aux.setEstado(est == 1);
+    }
+
+    cout << "Modificar ID de socio? (1=si, 0=no): ";
+    cin >> opt;
+    if (opt == 1) {
+        int nuevoId;
+        cout << "Nuevo ID de socio: ";
+        cin >> nuevoId;
+        while (nuevoId <= 0) {
+            cout << "Ingresar una id valida (mayor a 0): ";
+            cin >> nuevoId;
+        }
+        aux.setIdSocio(nuevoId);
+    }
+
+    cout << "\nResumen actualizado:" << endl;
+    SuscripcionCout(aux);
+    cout << endl;
+
+    cout << "Confirmar guardado? (1=si, 0=no): ";
+    cin >> opt;
+    if (opt == 1) {
+        fseek(a, pos, SEEK_SET);
+        if (fwrite(&aux, sizeof(Suscripcion), 1, a) != 1) {
+            cout << "Error al guardar los cambios." << endl;
+            fclose(a);
+            return;
+        }
+        cout << "Suscripcion actualizada correctamente." << endl;
+    } else {
+        cout << "Cambios descartados." << endl;
+    }
+
+    fclose(a);
+}
