@@ -8,19 +8,24 @@ class Socio{
         char Telefono[15];
         char Estado;
         char IncluyeDonacion;
+        int puntos;
+
     public:
         Socio();
         void setIdSocio(int);
         void setNombre(const char*);
-        void setCategoria(char*);
-        void setTelefono(char*);
+        void setCategoria(const char* cat);
+        void setTelefono(const char*);
         void setEstado(char);
         void setIncluyeDonacion(char);
+        void setPuntos(int);
+
         int getIdSocio();
         const char* getNombre();
-        char *getCategoria();
-        char *getTelefono();
+        const char *getCategoria();
+        const char *getTelefono();
         char getEstado();
         char getIncluyeDonacion();
+        int getPuntos();
 
 };
