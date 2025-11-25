@@ -40,6 +40,14 @@ using namespace std;
         setFechaPrestamo(fechaPrestamo);
         setFechaDevolucion(fechaDevolucion);
         setEstado(true);
+        long dias = fechaPrestamo.diasEntre(fechaDevolucion);
+        SocioManager sm;
+        if (dias <= 31) {
+        sm.SumarPuntos(idSocio, 10);
+        }
+        else {
+        sm.SumarPuntos(idSocio, -20);
+        }
         return 0;
     }
 
