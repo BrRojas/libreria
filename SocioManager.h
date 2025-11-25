@@ -6,4 +6,6 @@ public:
     void CargarSocio();
     void MostrarSocios();
     void BuscarIdSocio();
+    void SumarPuntosManual();
 };
+
