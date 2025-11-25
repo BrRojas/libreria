@@ -5,7 +5,7 @@
 
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menu.h
 
-1763933076 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menu.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menu.cpp
 	<iostream>
 	"Menu.h"
 	"rlutil.h"
@@ -152,7 +152,7 @@
 1762211595 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\autor.h
 	"Fecha.h"
 
-1762305384 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\fecha.h
+1764077462 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\fecha.h
 
 1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\betados.cpp
 	"Betados.h"
@@ -162,15 +162,15 @@
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\betados.h
 	<string>
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\csocio.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\csocio.cpp
 	<iostream>
 	<cstring>
 	"CSocio.h"
 
-1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\csocio.h
+1764077462 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\csocio.h
 	<string>
 
-1762388980 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\fecha.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\fecha.cpp
 	<iostream>
 	"Fecha.h"
 
@@ -182,15 +182,15 @@
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libro.h
 	<cstring>
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libromanager.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libromanager.cpp
 	<iostream>
 	<cstdio>
 	"LibroManager.h"
 
-1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libromanager.h
+1764077462 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libromanager.h
 	"Libro.h"
 
-1763933078 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menulibro.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menulibro.cpp
 	<iostream>
 	"rlutil.h"
 	"LibroManager.h"
@@ -214,7 +214,7 @@
 	"SocioManager.h"
 	"rlutil.h"
 
-1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\sociomanager.h
+1764077462 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\sociomanager.h
 	"CSocio.h"
 
 1763933079 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menuvetados.cpp
@@ -230,7 +230,7 @@
 
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menuvetados.h
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\prestamo.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\prestamo.cpp
 	"Prestamo.h"
 	"Fecha.h"
 	<cstring>
@@ -239,7 +239,7 @@
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\prestamo.h
 	"Fecha.h"
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\sociomanager.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\sociomanager.cpp
 	<iostream>
 	<cstdio>
 	"SocioManager.h"
@@ -273,7 +273,7 @@
 1763933075 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\suscripcionmanager.h
 	"Suscripcion.h"
 
-1763933089 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\suscripcionmanager.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\suscripcionmanager.cpp
 	<iostream>
 	<cstdio>
 	"SuscripcionManager.h"
