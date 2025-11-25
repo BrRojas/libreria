@@ -88,3 +88,26 @@ void Fecha::setAnio(int a) {
 int Fecha::getDia() { return dia; }
 int Fecha::getMes() { return mes; }
 int Fecha::getAnio() { return anio; }
+long Fecha::diasEntre(const Fecha& otra) const {
+    // Convertir ambas fechas a “día absoluto”
+    auto diasAbs = [](const Fecha& f) {
+        int a = f.anio;
+        int m = f.mes;
+        int d = f.dia;
+
+        if (m < 3) {
+            a--;
+            m += 12;
+        }
+
+        long total = 365L * a + a / 4 - a / 100 + a / 400;
+        total += (153 * (m - 3) + 2) / 5;
+        total += d - 1;
+        return total;
+    };
+
+    long d1 = diasAbs(*this);
+    long d2 = diasAbs(otra);
+
+    return d2 - d1;
+}
