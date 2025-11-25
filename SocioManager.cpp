@@ -32,7 +32,7 @@ void SocioManager::CargarSocio() {
     cin.getline(telefono, 15);
     s.setTelefono(telefono);
 
-    cout << "¿Está activo? (1=si, 0=no): ";
+    cout << "Â¿EstÃ¡ activo? (1=si, 0=no): ";
     cin >> estado;
 
     while (estado != '0' && estado != '1') {
@@ -41,7 +41,7 @@ void SocioManager::CargarSocio() {
     }
     s.setEstado(estado);
 
-    cout << "¿Incluye donacion? (1=si, 0=no): ";
+    cout << "Â¿Incluye donacion? (1=si, 0=no): ";
     cin >> donacion;
 
     while (donacion != '0' && donacion != '1') {
@@ -120,4 +120,55 @@ void SocioManager::BuscarIdSocio() {
 
     fclose(p);
 }
+ void SocioManager::SumarPuntosManual() {
+    int id, pts;
+
+    cout << "Ingrese ID del socio: ";
+    cin >> id;
+
+    FILE* f = fopen("Socios.dat", "rb");
+    if (!f) {
+        cout << "No se pudo abrir el archivo." << endl;
+        return;
+    }
+
+    Socio s;
+    long pos = 0;
+    bool encontrado = false;
+
+    while (fread(&s, sizeof(Socio), 1, f) == 1) {
+        if (s.getIdSocio() == id) {
+            encontrado = true;
+            break;
+        }
+        pos += sizeof(Socio);
+    }
+    fclose(f);
+
+    if (!encontrado) {
+        cout << "No existe un socio con ese ID." << endl;
+        return;
+    }
+
+    cout << "=== DATOS ACTUALES ===" << endl;
+    cout << "Categoria: " << s.getCategoria() << endl;
+    cout << "Puntos: " << s.getPuntos() << endl;
+    cout << "\nIngrese puntos a sumar (negativo = restar): " << endl;
+    cin >> pts;
+
+    SumarPuntos(id, pts);
+
+    f = fopen("Socios.dat", "rb");
+    fseek(f, pos, SEEK_SET);
+    fread(&s, sizeof(Socio), 1, f);
+    fclose(f);
+
+    cout << "=== DATOS ACTUALIZADOS ===" << endl;
+    cout << "ID: " << s.getIdSocio() << endl;
+    cout << "Categoria nueva: " << s.getCategoria() << endl;
+    cout << "Puntos nuevos: " << s.getPuntos() << endl;
+
+}
+
+
 
