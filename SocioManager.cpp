@@ -2,6 +2,7 @@
 #include <cstdio>
 #include "SocioManager.h"
 #include "VetadosManager.h"
+#include "CSocio.h"
 using namespace std;
 
 
@@ -10,11 +11,10 @@ void SocioManager::CargarSocio() {
 
     int id;
     char nombre [30];
-    char categoria[30];
     char telefono[15];
     char estado;
     char donacion;
-
+    char categoria[30];
     cout << "Ingrese ID de socio: ";
     cin >> id;
     s.setIdSocio(id);
@@ -24,15 +24,13 @@ void SocioManager::CargarSocio() {
     cin.getline(nombre, 50);
     s.setNombre(nombre);
 
-    cout << "Ingrese categoria: ";
-    cin.getline(categoria, 30);
-    s.setCategoria(categoria);
-
     cout << "Ingrese telefono: ";
+    cin.ignore();
     cin.getline(telefono, 15);
     s.setTelefono(telefono);
 
-    cout << "¿Está activo? (1=si, 0=no): ";
+
+    cout << "Â¿EstÃ¡ activo? (1=si, 0=no): ";
     cin >> estado;
 
     while (estado != '0' && estado != '1') {
@@ -41,7 +39,7 @@ void SocioManager::CargarSocio() {
     }
     s.setEstado(estado);
 
-    cout << "¿Incluye donacion? (1=si, 0=no): ";
+    cout << "Â¿Incluye donacion? (1=si, 0=no): ";
     cin >> donacion;
 
     while (donacion != '0' && donacion != '1') {
@@ -56,9 +54,13 @@ void SocioManager::CargarSocio() {
         cout << "No se pudo abrir el archivo." << endl;
         return;
     }
+    s.setPuntos(100);
+    s.setCategoria("Bronce");
+
     fwrite(&s, sizeof(Socio), 1, p);
     fclose(p);
     cout << "Socio guardado correctamente." << endl;
+
 }
 
 void SocioManager::MostrarSocios() {
@@ -76,6 +78,7 @@ void SocioManager::MostrarSocios() {
         cout << "Nombre: " << s.getNombre() << endl;
         cout << "ID: " << s.getIdSocio() << endl;
         cout << "Categoria: " << s.getCategoria() << endl;
+        cout << "Puntos: " << s.getPuntos() << endl;
         cout << "Telefono: " << s.getTelefono() << endl;
         cout << "Estado: " << (s.getEstado() ? "Activo" : "Inactivo") << endl;
         cout << "Incluye donacion: " << (s.getIncluyeDonacion() ? "Si" : "No") << endl;
@@ -120,4 +123,86 @@ void SocioManager::BuscarIdSocio() {
 
     fclose(p);
 }
+void SocioManager::SumarPuntos(int idSocio, int puntos) {
+    FILE* f = fopen("Socios.dat", "rb+");
+    if (!f) return;
+
+    Socio s;
+    long pos = 0;
+
+    while (fread(&s, sizeof(Socio), 1, f) == 1) {
+        if (s.getIdSocio() == idSocio) {
+
+            int nuevosPuntos = s.getPuntos() + puntos;
+            if (nuevosPuntos < 0) nuevosPuntos = 0;
+
+            s.setPuntos(nuevosPuntos);
+
+            if (nuevosPuntos < 500) s.setCategoria("Bronce");
+            else if (nuevosPuntos < 1000) s.setCategoria("Plata");
+            else if (nuevosPuntos < 1500) s.setCategoria("Oro");
+            else s.setCategoria("Platino");
+
+            fseek(f, pos, SEEK_SET);
+            fwrite(&s, sizeof(Socio), 1, f);
+            break;
+        }
+        pos += sizeof(Socio);
+    }
+
+    fclose(f);
+}
+
+ void SocioManager::SumarPuntosManual() {
+    int id, pts;
+
+    cout << "Ingrese ID del socio: ";
+    cin >> id;
+
+    FILE* f = fopen("Socios.dat", "rb");
+    if (!f) {
+        cout << "No se pudo abrir el archivo." << endl;
+        return;
+    }
+
+    Socio s;
+    long pos = 0;
+    bool encontrado = false;
+
+    while (fread(&s, sizeof(Socio), 1, f) == 1) {
+        if (s.getIdSocio() == id) {
+            encontrado = true;
+            break;
+        }
+        pos += sizeof(Socio);
+    }
+    fclose(f);
+
+    if (!encontrado) {
+        cout << "No existe un socio con ese ID." << endl;
+        return;
+    }
+
+    cout << "=== DATOS ACTUALES ===" << endl;
+    cout << "Categoria: " << s.getCategoria() << endl;
+    cout << "Puntos: " << s.getPuntos() << endl;
+    cout << "\nIngrese puntos a sumar (negativo = restar): " << endl;
+    cin >> pts;
+
+    SumarPuntos(id, pts);
+
+    f = fopen("Socios.dat", "rb");
+    fseek(f, pos, SEEK_SET);
+    fread(&s, sizeof(Socio), 1, f);
+    fclose(f);
+
+    cout << "=== DATOS ACTUALIZADOS ===" << endl;
+    cout << "ID: " << s.getIdSocio() << endl;
+    cout << "Categoria nueva: " << s.getCategoria() << endl;
+    cout << "Puntos nuevos: " << s.getPuntos() << endl;
+
+}
+
+
+
 

@@ -1,7 +1,10 @@
 #include <iostream>
 #include <cstdio>
 #include "PrestamoManager.h"
+#include "Prestamo.h"
 #include <vector>
+#include "Fecha.h"
+#include "SocioManager.h"
 using namespace std;
 
 void PrestamoManager::CargarPrestamo() {
@@ -26,7 +29,14 @@ void PrestamoManager::CargarPrestamo() {
     p.setFechaPrestamo(fechaPrestamo);
     p.setFechaDevolucion(fechaDevolucion);
     p.setEstado(true);
-
+    long dias = fechaPrestamo.diasEntre(fechaDevolucion);
+    SocioManager sm;
+        if (dias <= 31) {
+        sm.SumarPuntos(idSocio, 10);
+        }
+        else {
+        sm.SumarPuntos(idSocio, -20);
+        }
     FILE *pArchivo = fopen("prestamos.dat", "rb");
     if(pArchivo != NULL) {
         fseek(pArchivo, 0, SEEK_END);
@@ -149,6 +159,8 @@ void PrestamoManager::BorrarPrestamo() {
 
     cout << "Prestamo eliminado correctamente." << endl;
 }
+
+// sacar estado logico poniendo estado en false
 
 void PrestamoManager::PrestamoCout(Prestamo p) {
     cout << endl << "ID del prestamo: " << p.getIdPrestamo() << endl;

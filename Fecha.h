@@ -20,6 +20,7 @@ public:
     int getDia();
     int getMes();
     int getAnio();
+    long diasEntre(const Fecha& otra) const;
 };
 
 #endif

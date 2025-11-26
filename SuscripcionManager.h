@@ -8,4 +8,5 @@ public:
     void BuscarPorIdSocio();
     void RenovarAutomaticas();
     void SuscripcionCout(Suscripcion s);
+    void ModificarSuscripcion();
 };

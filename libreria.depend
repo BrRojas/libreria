@@ -5,7 +5,7 @@
 
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menu.h
 
-1763932265 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menu.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menu.cpp
 	<iostream>
 	"Menu.h"
 	"rlutil.h"
@@ -156,7 +156,7 @@
 1762211595 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\autor.h
 	"Fecha.h"
 
-1762305384 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\fecha.h
+1764109379 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\fecha.h
 
 1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\betados.cpp
 	"Betados.h"
@@ -166,15 +166,15 @@
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\betados.h
 	<string>
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\csocio.cpp
+1764109379 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\csocio.cpp
 	<iostream>
 	<cstring>
 	"CSocio.h"
 
-1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\csocio.h
+1764109379 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\csocio.h
 	<string>
 
-1762388980 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\fecha.cpp
+1764109379 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\fecha.cpp
 	<iostream>
 	"Fecha.h"
 
@@ -186,15 +186,15 @@
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libro.h
 	<cstring>
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libromanager.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libromanager.cpp
 	<iostream>
 	<cstdio>
 	"LibroManager.h"
 
-1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libromanager.h
+1764077462 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\libromanager.h
 	"Libro.h"
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menulibro.cpp
+1764077462 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menulibro.cpp
 	<iostream>
 	"rlutil.h"
 	"LibroManager.h"
@@ -213,15 +213,15 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menusocio.cpp
+1764109379 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menusocio.cpp
 	<iostream>
 	"SocioManager.h"
 	"rlutil.h"
 
-1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\sociomanager.h
+1764109379 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\sociomanager.h
 	"CSocio.h"
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menuvetados.cpp
+1763933079 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menuvetados.cpp
 	<iostream>
 	"Betados.h"
 	"VetadosManager.h"
@@ -234,7 +234,7 @@
 
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menuvetados.h
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\prestamo.cpp
+1764113709 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\prestamo.cpp
 	"Prestamo.h"
 	"Fecha.h"
 	<cstring>
@@ -243,11 +243,12 @@
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\prestamo.h
 	"Fecha.h"
 
-1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\sociomanager.cpp
+1764109379 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\sociomanager.cpp
 	<iostream>
 	<cstdio>
 	"SocioManager.h"
 	"VetadosManager.h"
+	"CSocio.h"
 
 1763603644 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\vetadosmanager.cpp
 	"VetadosManager.h"
@@ -266,18 +267,18 @@
 
 1763603644 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menusocio.h
 
-1763605865 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menususcripcion.h
+1763933091 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menususcripcion.h
 
-1763605825 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menususcripcion.cpp
+1764112648 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menususcripcion.cpp
 	<iostream>
 	"MenuSuscripcion.h"
 	"SuscripcionManager.h"
 	"rlutil.h"
 
-1763605910 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\suscripcionmanager.h
+1764112654 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\suscripcionmanager.h
 	"Suscripcion.h"
 
-1763606156 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\suscripcionmanager.cpp
+1764112670 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\suscripcionmanager.cpp
 	<iostream>
 	<cstdio>
 	"SuscripcionManager.h"
