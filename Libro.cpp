@@ -35,6 +35,9 @@ using namespace std;
     bool Libro::getEstado(){
         return estado;
     }
+    int Libro::getStock() {
+        return stock;
+    }
     int Libro::getIdAutor(){
         return idAutor;
     }
@@ -73,6 +76,11 @@ using namespace std;
     void Libro::setVecesPrestado(int vecesPrestado)
     {
         this->vecesPrestado = vecesPrestado;
+    }
+
+    void Libro::setStock(int stock)
+    {
+        this->stock = stock;
     }
 
     void Libro::setEstado(bool estado)

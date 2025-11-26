@@ -4,7 +4,7 @@
 class Libro {
     private:
         char isbn[20], genero[35], titulo[40], editorial[35];
-        int cantidadEjemplares, id, idAutor, vecesPrestado, stock;
+        int cantidadEjemplares, id, idAutor, vecesPrestado;
         bool estado;
 
     public:
