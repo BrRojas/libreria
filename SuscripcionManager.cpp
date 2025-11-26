@@ -1,9 +1,51 @@
 #include <iostream>
 #include <cstdio>
 #include "SuscripcionManager.h"
+#include "CSocio.h"
+#include "VetadosManager.h"
 using namespace std;
 
 static const char* SUSC_FILE = "suscripciones.dat";
+static const char* SOCIOS_FILE = "Socios.dat";
+
+
+
+//   Verificamos  si existe un socio en Socios.dat
+
+static bool existeSocio(int id) {
+    FILE* f = fopen(SOCIOS_FILE, "rb");
+    if (!f) return false;
+
+    Socio s;
+    while (fread(&s, sizeof(Socio), 1, f) == 1) {
+        if (s.getIdSocio() == id) {
+            fclose(f);
+            return true;
+        }
+    }
+
+    fclose(f);
+    return false;
+}
+
+//  Verificamos si ya tiene una suscripcion activa
+
+static bool tieneSuscripcionActiva(int idSocio) {
+    FILE* f = fopen(SUSC_FILE, "rb");
+    if (!f) return false;
+
+    Suscripcion aux;
+    while (fread(&aux, sizeof(Suscripcion), 1, f) == 1) {
+        if (aux.getIdSocio() == idSocio && aux.getEstado()) {
+            fclose(f);
+            return true;
+        }
+    }
+
+    fclose(f);
+    return false;
+}
+
 
 void SuscripcionManager::CargarSuscripcion() {
     Suscripcion s;
@@ -11,13 +53,46 @@ void SuscripcionManager::CargarSuscripcion() {
     bool renovAuto;
     Fecha ini, fin;
 
-    cout << "Ingrese el ID del Socio: ";
+    cout << "Ingrese el ID del Socio: " << endl;
     cin >> idSocio;
-    cout << "Fecha de inicio:\n";
+
+    if (idSocio <= 0) {
+        cout << "ID invalido." <<endl;
+        return;
+    }
+
+    // Validamos que exista el socio
+    if (!existeSocio(idSocio)) {
+        cout << "ERROR: No existe un socio con ese ID" << endl;
+        return;
+    }
+
+    // Validamos que NO este vetado
+    VetadosManager vm;
+    if (vm.EstaVetado(idSocio)) {
+        cout << "ERROR: Este socio está VETADO y no puede obtener suscripción" << endl;
+        return;
+    }
+
+    // Validamos si ya tiene suscripcion activa
+    if (tieneSuscripcionActiva(idSocio)) {
+        char opc;
+        cout << "ATENCIÓN: Este socio YA tiene una suscripción activa" << endl;
+        cout << "¿Desea agregar otra igualmente? (s/n): " << endl;
+        cin >> opc;
+
+        if (opc != 's' && opc != 'S') {
+            cout << "Operación cancelada." << endl;
+            return;
+        }
+    }
+
+    cout << "Fecha de inicio: " << endl;
     ini.cargar();
-    cout << "Fecha de fin:\n";
+    cout << "Fecha de fin: " << endl;
     fin.cargar();
-    cout << "Renovacion automatica (1=si, 0=no): ";
+
+    cout << "Renovación automática (1=si, 0=no): " << endl;
     cin >> renovAuto;
 
     s.setIdSocio(idSocio);
@@ -26,6 +101,7 @@ void SuscripcionManager::CargarSuscripcion() {
     s.setRenovacionAutomatica(renovAuto);
     s.setEstado(true);
 
+    // Calcular ID de suscripcion
     int idNuevo = 1;
     FILE* p = fopen(SUSC_FILE, "rb");
     if (p != NULL) {
@@ -36,18 +112,18 @@ void SuscripcionManager::CargarSuscripcion() {
     }
     s.setIdSuscripcion(idNuevo);
 
+
+    // GUARDAR EN ARCHIVO
     FILE* a = fopen(SUSC_FILE, "ab");
-    if (a == NULL) {
-        cout << "No se pudo abrir el archivo de suscripciones" << endl;
+    if (!a) {
+        cout << "No se pudo abrir el archivo de suscripciones.\n";
         return;
     }
-    if (fwrite(&s, sizeof(Suscripcion), 1, a) != 1) {
-        cout << "Error intentando agregar la suscripcion." << endl;
-        fclose(a);
-        return;
-    }
+
+    fwrite(&s, sizeof(Suscripcion), 1, a);
     fclose(a);
-    cout << "Suscripcion guardada correctamente." << endl;
+
+    cout << "Suscripción guardada correctamente.\n";
 }
 
 void SuscripcionManager::MostrarSuscripciones() {

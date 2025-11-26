@@ -104,6 +104,7 @@ void SocioManager::BuscarIdSocio() {
         if (s.getIdSocio() == buscado) {
             cout << "SOCIO ENCONTRADO:" << endl;
             cout << "ID: " << s.getIdSocio() << endl;
+            cout << "Nombre: " << s.getNombre() << endl;
             cout << "Categoria: " << s.getCategoria() << endl;
             cout << "Telefono: " << s.getTelefono() << endl;
             cout << "Estado: " << (s.getEstado() ? "Activo" : "Inactivo") << endl;

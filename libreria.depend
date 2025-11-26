@@ -317,3 +317,179 @@
 	"rlutil.h"
 	"PrestamoManager.h"
 
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\autor.cpp
+	<iostream>
+	<cstring>
+	"Autor.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\autor.h
+	"Fecha.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\fecha.h
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\betados.cpp
+	"Betados.h"
+	<iostream>
+	<cstring>
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\betados.h
+	<string>
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\libro.cpp
+	"Libro.h"
+	<cstring>
+	<iostream>
+
+1764157691 c:\users\agustin\desktop\clon repo vsc\libreria\libro.h
+	<cstring>
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\libromanager.cpp
+	<iostream>
+	<cstdio>
+	"LibroManager.h"
+	<vector>
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\libromanager.h
+	"Libro.h"
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\main.cpp
+	<iostream>
+	"Menu.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\menu.h
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\menu.cpp
+	<iostream>
+	"Menu.h"
+	"rlutil.h"
+	"Libro.h"
+	"MenuVetados.h"
+	"MenuLibro.h"
+	"MenuSocio.h"
+	"MenuSuscripcion.h"
+	"MenuPrestamo.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\menuvetados.h
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\menulibro.h
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\menusocio.h
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\menususcripcion.h
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\menuprestamo.h
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\menulibro.cpp
+	<iostream>
+	"rlutil.h"
+	"LibroManager.h"
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\menuprestamo.cpp
+	<iostream>
+	"rlutil.h"
+	"PrestamoManager.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\prestamomanager.h
+	"Prestamo.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\prestamo.h
+	"Fecha.h"
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\menusocio.cpp
+	<iostream>
+	"SocioManager.h"
+	"rlutil.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\sociomanager.h
+	"CSocio.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\csocio.h
+	<string>
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\menususcripcion.cpp
+	<iostream>
+	"MenuSuscripcion.h"
+	"SuscripcionManager.h"
+	"rlutil.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\suscripcionmanager.h
+	"Suscripcion.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\suscripcion.h
+	"Fecha.h"
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\menuvetados.cpp
+	<iostream>
+	"Betados.h"
+	"VetadosManager.h"
+	"MenuVetados.h"
+	"rlutil.h"
+
+1764157442 c:\users\agustin\desktop\clon repo vsc\libreria\vetadosmanager.h
+	<string>
+	"Betados.h"
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\prestamo.cpp
+	"Prestamo.h"
+	"Fecha.h"
+	<cstring>
+	<iostream>
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\suscripcion.cpp
+	"Suscripcion.h"
+
+1764173727 source:c:\users\agustin\desktop\clon repo vsc\libreria\suscripcionmanager.cpp
+	<iostream>
+	<cstdio>
+	"SuscripcionManager.h"
+	"CSocio.h"
+	"VetadosManager.h"
+
+1764157442 source:c:\users\agustin\desktop\clon repo vsc\libreria\vetadosmanager.cpp
+	"VetadosManager.h"
+	"Betados.h"
+	<iostream>
+	<cstring>
+	<cstdio>
+
+1764157928 source:c:\users\agustin\desktop\clon repo vsc\libreria\csocio.cpp
+	<iostream>
+	<cstring>
+	"CSocio.h"
+
+1764157813 source:c:\users\agustin\desktop\clon repo vsc\libreria\prestamomanager.cpp
+	<iostream>
+	<cstdio>
+	"PrestamoManager.h"
+	"Prestamo.h"
+	<vector>
+	"Fecha.h"
+	"SocioManager.h"
+	"VetadosManager.h"
+	"CSocio.h"
+
+1764173876 source:c:\users\agustin\desktop\clon repo vsc\libreria\sociomanager.cpp
+	<iostream>
+	"CSocio.h"
+	<cstdio>
+	"SocioManager.h"
+	"VetadosManager.h"
+
