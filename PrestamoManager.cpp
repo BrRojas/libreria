@@ -5,6 +5,7 @@
 #include <vector>
 #include "Fecha.h"
 #include "SocioManager.h"
+#include "CSocio.h"
 using namespace std;
 
 void PrestamoManager::CargarPrestamo() {
@@ -14,8 +15,39 @@ void PrestamoManager::CargarPrestamo() {
     char isBn[20];
     Fecha fechaPrestamo, fechaDevolucion;
 
-    cout << "Ingrese el Id del socio: ";
-    cin >> idSocio;
+    bool encontradoSocio = false;
+    
+    do {
+        cout << "Ingrese el Id del socio: ";
+        cin >> idSocio;
+
+        FILE* pSocio = fopen("Socios.dat", "rb");
+        if (pSocio == NULL) {
+            cout << "No se pudo abrir el archivo." << endl;
+            return;
+        }
+
+        Socio s;
+        encontradoSocio = false;
+
+        while (fread(&s, sizeof(Socio), 1, pSocio) == 1) {
+            if (s.getIdSocio() == idSocio) {
+                VetadosManager vm;
+                if (!vm.EstaVetado(idSocio)) {
+                    encontradoSocio = true;
+                }
+                break;
+            }
+        }
+        fclose(pSocio);
+
+        if (!encontradoSocio) {
+            cout << "No existe un socio con ese ID o esta vetado. Intente nuevamente." << endl;
+        }
+    } while (!encontradoSocio);
+
+
+
     cin.ignore();
     cout << "Ingrese el isBn: ";
     cin.getline(isBn, 20);
@@ -69,7 +101,9 @@ void PrestamoManager::MostrarPrestamos() {
         cout << "====== LISTA DE PRESTAMOS ======" << endl;
         Prestamo aux;
         while(fread(&aux, sizeof(Prestamo), 1, archivo) == 1) {
-            PrestamoCout(aux);
+            if(aux.getEstado()) {
+                PrestamoCout(aux);
+            }
         }
         fclose(archivo);
     } else {
@@ -90,7 +124,7 @@ void PrestamoManager::BuscarIdPrestamoSocio() {
     
     FILE* archivo = fopen("prestamos.dat", "rb");
     if(archivo == nullptr) {
-        cout << "No hay ningun libro agregado hasta el momento" << endl;
+        cout << "No hay ningun prestamo agregado hasta el momento" << endl;
         return;
     }
 
@@ -101,7 +135,6 @@ void PrestamoManager::BuscarIdPrestamoSocio() {
         if(aux.getIdSocio() == id) {
             encontrado = true;
             PrestamoCout(aux);
-            break;
         }
     }
 
@@ -136,12 +169,11 @@ void PrestamoManager::BorrarPrestamo() {
     while (fread(&aux, sizeof(Prestamo), 1, archivo) == 1) {
         if (aux.getIdPrestamo() == id) {
             encontrado = true;
-            cout << "\nPrestamo encontrado y eliminado:\n";
+            aux.setEstado(false);  // Cambiar estado a false
+            cout << "\nPrestamo encontrado y marcado como inactivo:\n";
             PrestamoCout(aux);
-        } 
-        else {
-            prestamos.push_back(aux);   // guardar resto de prestamos
         }
+        prestamos.push_back(aux);   // guardar todos los prestamos (incluyendo el modificado)
     }
     fclose(archivo);
 
@@ -157,7 +189,7 @@ void PrestamoManager::BorrarPrestamo() {
     }
     fclose(archivo);
 
-    cout << "Prestamo eliminado correctamente." << endl;
+    cout << "Prestamo marcado como inactivo correctamente." << endl;
 }
 
 // sacar estado logico poniendo estado en false

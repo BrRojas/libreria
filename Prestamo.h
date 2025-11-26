@@ -10,17 +10,12 @@ class Prestamo {
 
     public:
         Prestamo();
-        Prestamo(int idPrestamo, int idSocio, char* isBn, Fecha fechaPrestamo, Fecha fechaDevolucion, bool estado);
         int getIdPrestamo();
         int getIdSocio();
         char* getIsBn();
         Fecha getFechaPrestamo();
         Fecha getFechaDevolucion();
         bool getEstado();
-        
-        int Cargar();
-        void Mostrar();
-        void MostrarPrestamos();
 
         void setIdPrestamo(int idPrestamo);
         void setIdSocio(int idSocio);
