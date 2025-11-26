@@ -8,4 +8,6 @@ public:
     void BuscarIdLibro();
     void BorrarLibro();
     void LibroCout(Libro l);
+    void EditarLibro();
+    bool ManejarStock(int id, int cantidad);
 };

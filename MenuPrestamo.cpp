@@ -32,11 +32,11 @@ void MenuPrestamo() {
             rlutil::anykey();
             break;
         case 3:
-            
+            manager.BuscarIdPrestamoSocio();
             rlutil::anykey();
             break;
         case 4:
-            
+            manager.BorrarPrestamo();
             rlutil::anykey();
             break;
         case 0:

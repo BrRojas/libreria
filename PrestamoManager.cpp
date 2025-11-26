@@ -7,13 +7,13 @@
 #include "SocioManager.h"
 #include "VetadosManager.h"
 #include "CSocio.h"
+#include "LibroManager.h"
 using namespace std;
 
 void PrestamoManager::CargarPrestamo() {
     Prestamo p;
 
-    int idSocio, idNuevo = 1;
-    char isBn[20];
+    int idSocio, idNuevo = 1, idLibro;
     Fecha fechaPrestamo, fechaDevolucion;
 
     bool encontradoSocio = false;
@@ -50,15 +50,23 @@ void PrestamoManager::CargarPrestamo() {
 
 
     cin.ignore();
-    cout << "Ingrese el isBn: ";
-    cin.getline(isBn, 20);
+    cout << "Ingrese el ID del libro: ";
+    cin >> idLibro;
+
+
+    LibroManager l;
+    if(!l.ManejarStock(idLibro, -1)) {
+        cout << "Hubo un problema con el libro del prestamo, intentar devuelta con otro libro" << endl;
+        return;
+    }
+
     cout << "Ingrese la fecha del prestamo: ";
     fechaPrestamo.cargar();
     cout << "Ingrese la fecha de devolucion: ";
     fechaDevolucion.cargar();
 
     p.setIdSocio(idSocio);
-    p.setIsBn(isBn);
+    p.setIdLibro(idLibro);
     p.setFechaPrestamo(fechaPrestamo);
     p.setFechaDevolucion(fechaDevolucion);
     p.setEstado(true);
@@ -147,7 +155,7 @@ void PrestamoManager::BuscarIdPrestamoSocio() {
 }
 
 void PrestamoManager::BorrarPrestamo() {
-    int id;
+    int id, idLibro;
     cout << "Ingresar el ID del prestamo: ";
     cin >> id;
 
@@ -171,12 +179,19 @@ void PrestamoManager::BorrarPrestamo() {
         if (aux.getIdPrestamo() == id) {
             encontrado = true;
             aux.setEstado(false);  // Cambiar estado a false
+            idLibro = aux.getIdLibro();
             cout << "\nPrestamo encontrado y marcado como inactivo:\n";
             PrestamoCout(aux);
         }
         prestamos.push_back(aux);   // guardar todos los prestamos (incluyendo el modificado)
     }
     fclose(archivo);
+
+    LibroManager l;
+    if(!l.ManejarStock(idLibro, 1)) {
+        cout << "Hubo un error manejando el stock del libro";
+        return;
+    }
 
     if (!encontrado) {
         cout << "No encontramos un prestamo con ese ID." << endl;
@@ -198,7 +213,7 @@ void PrestamoManager::BorrarPrestamo() {
 void PrestamoManager::PrestamoCout(Prestamo p) {
     cout << endl << "ID del prestamo: " << p.getIdPrestamo() << endl;
     cout << "ID del socio: " << p.getIdSocio() << endl;
-    cout << "ISBN: " << p.getIsBn() << endl;
+    cout << "ID Libro: " << p.getIdLibro() << endl;
     cout << "Fecha del prestamo: " << p.getFechaPrestamo().getDia() << "/" << p.getFechaPrestamo().getMes() << "/" << p.getFechaPrestamo().getAnio() << endl;
     cout << "Fecha de devolucion: " << p.getFechaDevolucion().getDia() << "/" << p.getFechaDevolucion().getMes() << "/" << p.getFechaDevolucion().getAnio() << endl;
     cout << "Estado: " << (p.getEstado() == true ? "El prestamo esta activo" : "El prestamo esta inactivo") << endl;

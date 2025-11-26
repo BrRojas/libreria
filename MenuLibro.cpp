@@ -9,6 +9,7 @@ static void MostrarMenuLibro() {
     cout << "2) Mostrar libros"<< endl;
     cout << "3) Buscar por ID"<< endl;
     cout << "4) Eliminar libro por ID"<< endl;
+    cout << "5) Editar un libro por ID"<< endl;
     cout << "0) Salir"<< endl;
 }
 
@@ -37,6 +38,10 @@ void MenuLibro() {
             break;
         case 4:
             manager.BorrarLibro();
+            rlutil::anykey();
+            break;
+        case 5:
+            manager.EditarLibro();
             rlutil::anykey();
             break;
         case 0:

@@ -3,8 +3,7 @@
 
 class Prestamo {
     private:
-        int idPrestamo, idSocio;
-        char isBn[20];
+        int idPrestamo, idSocio, idLibro;
         Fecha fechaPrestamo, fechaDevolucion;
         bool estado;
 
@@ -12,14 +11,14 @@ class Prestamo {
         Prestamo();
         int getIdPrestamo();
         int getIdSocio();
-        char* getIsBn();
+        int getIdLibro();
         Fecha getFechaPrestamo();
         Fecha getFechaDevolucion();
         bool getEstado();
 
         void setIdPrestamo(int idPrestamo);
         void setIdSocio(int idSocio);
-        void setIsBn(char* isBn);
+        void setIdLibro(int idLibro);
         void setFechaPrestamo(Fecha fechaPrestamo);
         void setFechaDevolucion(Fecha fechaDevolucion);
         void setEstado(bool estado);

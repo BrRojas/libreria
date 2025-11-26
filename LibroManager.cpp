@@ -72,7 +72,9 @@ void LibroManager::MostrarLibros() {
             cout << "====== LISTA DE SOCIOS ======" << endl;
             Libro aux;
             while(fread(&aux, sizeof(Libro), 1, archivo) == 1) {
-                LibroCout(aux);
+                if(aux.getCantidadEjemplares() != 0) {
+                    LibroCout(aux);
+                }
             }
             fclose(archivo);
         } else {
@@ -138,12 +140,9 @@ void LibroManager::BorrarLibro() {
     while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
         if (aux.getId() == id) {
             encontrado = true;
-            cout << "\nLibro encontrado y eliminado:\n";
-            LibroCout(aux);
+            aux.setCantidadEjemplares(0);
         } 
-        else {
-            libros.push_back(aux);   // guardar resto de libros
-        }
+        libros.push_back(aux);   // guardar todos los libros
     }
     fclose(archivo);
 
@@ -160,6 +159,168 @@ void LibroManager::BorrarLibro() {
     fclose(archivo);
 
     cout << "Libro eliminado correctamente." << endl;
+}
+
+void LibroManager::EditarLibro() {
+    int id;
+    cout << "Ingrese el ID del libro que desea editar: ";
+    cin >> id;
+
+    while (id <= 0) {
+        cout << "ID inválido. Ingrese un número mayor a 0: ";
+        cin >> id;
+    }
+
+    FILE* archivo = fopen("libros.dat", "rb");
+    if (!archivo) {
+        cout << "No hay ningún libro agregado hasta el momento." << endl;
+        return;
+    }
+
+    vector<Libro> libros;
+    Libro aux;
+    bool encontrado = false;
+
+    // Leer todos los libros y buscar el que se quiere editar
+    while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
+        if (aux.getId() == id) {
+            encontrado = true;
+            cout << "\nLibro encontrado, datos actuales:" << endl;
+            LibroCout(aux);
+
+            cout << "\n=== ¿Qué campo desea editar? ===" << endl;
+            cout << "1. Titulo" << endl;
+            cout << "2. Autor (ID)" << endl;
+            cout << "3. ISBN" << endl;
+            cout << "4. Genero" << endl;
+            cout << "5. Editorial" << endl;
+            cout << "6. Cantidad de ejemplares" << endl;
+            cout << "7. Estado (1 = activo, 0 = inactivo)" << endl;
+            cout << "0. Cancelar" << endl;
+            cout << "Ingrese una opción: ";
+            int opcion;
+            cin >> opcion;
+
+            cin.ignore(); // limpiar buffer
+            switch(opcion) {
+                case 1: {
+                    char titulo[40];
+                    cout << "Nuevo titulo: ";
+                    cin.getline(titulo, 40);
+                    aux.setTitulo(titulo);
+                    break;
+                }
+                case 2: {
+                    int idAutor;
+                    cout << "Nuevo ID de Autor: ";
+                    cin >> idAutor;
+                    aux.setIdAutor(idAutor);
+                    break;
+                }
+                case 3: {
+                    char isbn[20];
+                    cout << "Nuevo ISBN: ";
+                    cin.ignore();
+                    cin.getline(isbn, 20);
+                    aux.setIsbn(isbn);
+                    break;
+                }
+                case 4: {
+                    char genero[35];
+                    cout << "Nuevo genero: ";
+                    cin.getline(genero, 35);
+                    aux.setGenero(genero);
+                    break;
+                }
+                case 5: {
+                    char editorial[35];
+                    cout << "Nueva editorial: ";
+                    cin.getline(editorial, 35);
+                    aux.setEditorial(editorial);
+                    break;
+                }
+                case 6: {
+                    int cantidad;
+                    cout << "Nueva cantidad de ejemplares: ";
+                    cin >> cantidad;
+                    aux.setCantidadEjemplares(cantidad);
+                    break;
+                }
+                case 7: {
+                    int estado;
+                    cout << "Nuevo estado (1 = activo, 0 = inactivo): ";
+                    cin >> estado;
+                    aux.setEstado(estado == 1);
+                    break;
+                }
+                case 0:
+                    cout << "Edición cancelada." << endl;
+                    break;
+                default:
+                    cout << "Opción inválida." << endl;
+            }
+        }
+        libros.push_back(aux);
+    }
+    fclose(archivo);
+
+    if (!encontrado) {
+        cout << "No encontramos un libro con ese ID." << endl;
+        return;
+    }
+
+    // Guardar todos los libros (incluido el editado)
+    archivo = fopen("libros.dat", "wb");
+    for (const Libro& l : libros) {
+        fwrite(&l, sizeof(Libro), 1, archivo);
+    }
+    fclose(archivo);
+
+    cout << "Libro editado correctamente." << endl;
+
+}
+
+bool LibroManager::ManejarStock(int id, int cantidad) {
+
+    FILE* archivo = fopen("libros.dat", "rb");
+    if (!archivo) {
+        cout << "No hay ningún libro agregado hasta el momento." << endl;
+        return false;
+    }
+
+    vector<Libro> libros;
+    Libro aux;
+    bool encontrado = false;
+
+    // Leer todos los libros
+    while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
+        if (aux.getId() == id) {
+            encontrado = true;
+            if(aux.getCantidadEjemplares() + cantidad == -1) {
+                cout << "No quedan mas ejemplares del libro" << endl;
+                fclose(archivo);
+                return false;
+            }
+            aux.setCantidadEjemplares(aux.getCantidadEjemplares() + cantidad);
+        } 
+        libros.push_back(aux);   // guardar todos los libros
+    }
+    fclose(archivo);
+
+    if (!encontrado) {
+        cout << "No encontramos un libro con ese ID." << endl;
+        return false;
+    }
+
+    // reescribimos todo el archivo
+    archivo = fopen("libros.dat", "wb");
+    for (const Libro& l : libros) { // esto es un for loop que va a loopear por cada libro que haya en libros (donde guardamos todos los libros)
+        fwrite(&l, sizeof(Libro), 1, archivo);
+    }
+    fclose(archivo);
+
+    cout << "Stock del libro actualizado correctamente." << endl;
+    return true;
 }
 
 void LibroManager::LibroCout(Libro l) {

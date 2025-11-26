@@ -23,7 +23,7 @@
 1762216914 c:\users\facundo\desktop\libreria\autor.h
 	"Fecha.h"
 
-1762216914 c:\users\facundo\desktop\libreria\fecha.h
+1764118336 c:\users\facundo\desktop\libreria\fecha.h
 
 1763489576 source:c:\users\facundo\desktop\libreria\betados.cpp
 	"Betados.h"
@@ -33,12 +33,12 @@
 1763489576 c:\users\facundo\desktop\libreria\betados.h
 	<string>
 
-1763489576 source:c:\users\facundo\desktop\libreria\csocio.cpp
+1764192030 source:c:\users\facundo\desktop\libreria\csocio.cpp
 	<iostream>
 	<cstring>
 	"CSocio.h"
 
-1763489576 c:\users\facundo\desktop\libreria\csocio.h
+1764118336 c:\users\facundo\desktop\libreria\csocio.h
 	<string>
 
 1763489573 source:c:\users\facundo\desktop\libreria\main.cpp
@@ -61,28 +61,28 @@
 1763993580 source:c:\users\facundo\desktop\libreria\suscripcion.cpp
 	"Suscripcion.h"
 
-1764006083 source:c:\users\facundo\desktop\libreria\prestamo.cpp
+1764193636 source:c:\users\facundo\desktop\libreria\prestamo.cpp
 	"Prestamo.h"
 	"Fecha.h"
 	<cstring>
 	<iostream>
 
-1762384001 source:c:\users\facundo\desktop\libreria\fecha.cpp
+1764118336 source:c:\users\facundo\desktop\libreria\fecha.cpp
 	<iostream>
 	"Fecha.h"
 
-1763520493 source:c:\users\facundo\desktop\libreria\libro.cpp
+1764124269 source:c:\users\facundo\desktop\libreria\libro.cpp
 	"Libro.h"
 	<cstring>
 	<iostream>
 
-1763500752 c:\users\facundo\desktop\libreria\libro.h
+1764192030 c:\users\facundo\desktop\libreria\libro.h
 	<cstring>
 
-1762396286 c:\users\facundo\desktop\libreria\prestamo.h
+1764193592 c:\users\facundo\desktop\libreria\prestamo.h
 	"Fecha.h"
 
-1764001760 source:c:\users\facundo\desktop\libreria\menulibro.cpp
+1764194810 source:c:\users\facundo\desktop\libreria\menulibro.cpp
 	<iostream>
 	"rlutil.h"
 	"LibroManager.h"
@@ -101,10 +101,10 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1763994476 c:\users\facundo\desktop\libreria\libromanager.h
+1764194796 c:\users\facundo\desktop\libreria\libromanager.h
 	"Libro.h"
 
-1764005472 source:c:\users\facundo\desktop\libreria\libromanager.cpp
+1764194661 source:c:\users\facundo\desktop\libreria\libromanager.cpp
 	<iostream>
 	<cstdio>
 	"LibroManager.h"
@@ -127,16 +127,17 @@
 
 1763521127 c:\users\facundo\desktop\libreria\menusocio.h
 
-1763993580 source:c:\users\facundo\desktop\libreria\menusocio.cpp
+1764118336 source:c:\users\facundo\desktop\libreria\menusocio.cpp
 	<iostream>
 	"SocioManager.h"
 	"rlutil.h"
 
-1763489576 c:\users\facundo\desktop\libreria\sociomanager.h
+1764118336 c:\users\facundo\desktop\libreria\sociomanager.h
 	"CSocio.h"
 
-1763489576 source:c:\users\facundo\desktop\libreria\sociomanager.cpp
+1764192030 source:c:\users\facundo\desktop\libreria\sociomanager.cpp
 	<iostream>
+	"CSocio.h"
 	<cstdio>
 	"SocioManager.h"
 	"VetadosManager.h"
@@ -288,28 +289,37 @@
 1763993580 c:\users\facundo\desktop\libreria\suscripcion.h
 	"Fecha.h"
 
-1764000559 source:c:\users\facundo\desktop\libreria\menususcripcion.cpp
+1764118336 source:c:\users\facundo\desktop\libreria\menususcripcion.cpp
 	<iostream>
 	"MenuSuscripcion.h"
 	"SuscripcionManager.h"
 	"rlutil.h"
 
-1763993580 c:\users\facundo\desktop\libreria\suscripcionmanager.h
+1764118336 c:\users\facundo\desktop\libreria\suscripcionmanager.h
 	"Suscripcion.h"
 
-1763993580 source:c:\users\facundo\desktop\libreria\suscripcionmanager.cpp
+1764192030 source:c:\users\facundo\desktop\libreria\suscripcionmanager.cpp
 	<iostream>
 	<cstdio>
 	"SuscripcionManager.h"
+	"CSocio.h"
+	"VetadosManager.h"
 
 1764001608 c:\users\facundo\desktop\libreria\menuprestamo.h
 
-1764006125 source:c:\users\facundo\desktop\libreria\prestamomanager.cpp
+1764194683 source:c:\users\facundo\desktop\libreria\prestamomanager.cpp
 	<iostream>
 	<cstdio>
 	"PrestamoManager.h"
+	"Prestamo.h"
+	<vector>
+	"Fecha.h"
+	"SocioManager.h"
+	"VetadosManager.h"
+	"CSocio.h"
+	"LibroManager.h"
 
-1764006303 c:\users\facundo\desktop\libreria\prestamomanager.h
+1764118710 c:\users\facundo\desktop\libreria\prestamomanager.h
 	"Prestamo.h"
 
 1764006154 source:c:\users\facundo\desktop\libreria\menuprestamo.cpp

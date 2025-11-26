@@ -17,8 +17,8 @@ using namespace std;
     int Prestamo::getIdSocio() {
         return idSocio;
     }
-    char* Prestamo::getIsBn() {
-        return isBn;
+    int Prestamo::getIdLibro() {
+        return idLibro;
     }
     Fecha Prestamo::getFechaPrestamo() {
         return fechaPrestamo;
@@ -37,8 +37,8 @@ using namespace std;
     void Prestamo::setIdSocio(int idSocio) {
         this->idSocio = idSocio;
     }
-    void Prestamo::setIsBn(char* isBn) {
-        strcpy(this->isBn, isBn);
+    void Prestamo::setIdLibro(int idLibro) {
+        this->idLibro = idLibro;
     }
     void Prestamo::setFechaPrestamo(Fecha fechaPrestamo) {
         this->fechaPrestamo = fechaPrestamo;
