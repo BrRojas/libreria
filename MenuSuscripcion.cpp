@@ -5,13 +5,39 @@
 using namespace std;
 
 static void mostrarMenuSuscripcion() {
-    cout << "===== GESTION DE SUSCRIPCIONES =====" << endl;
-    cout << "1. Alta de suscripcion" << endl;
-    cout << "2. Listar suscripciones" << endl;
-    cout << "3. Buscar por ID de socio" << endl;
-    cout << "4. Renovar automaticas (segun fecha ingresada)" << endl;
-    cout << "5. Modificar suscripcion" << endl;
-    cout << "0. Volver" << endl;
+    rlutil::cls();
+
+    int x = 4;
+    int y = 2;
+
+    rlutil::setColor(rlutil::LIGHTCYAN);
+    rlutil::locate(x, y);
+    cout << "==============================";
+    rlutil::locate(x, y + 1);
+    cout << "   GESTION DE SUSCRIPCIONES   ";
+    rlutil::locate(x, y + 2);
+    cout << "==============================";
+
+    rlutil::setColor(rlutil::LIGHTGREEN);
+    rlutil::locate(x, y + 4);
+    cout << "1) Alta de suscripcion";
+    rlutil::locate(x, y + 5);
+    cout << "2) Listar suscripciones";
+    rlutil::locate(x, y + 6);
+    cout << "3) Buscar por ID de socio";
+
+    rlutil::setColor(rlutil::YELLOW);
+    rlutil::locate(x, y + 8);
+    cout << "4) Renovar automaticas (segun fecha ingresada)";
+    rlutil::locate(x, y + 9);
+    cout << "5) Modificar suscripcion";
+
+    rlutil::setColor(rlutil::LIGHTRED);
+    rlutil::locate(x, y + 11);
+    cout << "0) Volver";
+
+    rlutil::resetColor();
+    rlutil::locate(x, y + 13);
 }
 
 void MenuSuscripcion() {

@@ -5,12 +5,26 @@ using namespace std;
 
 static void MostrarMenuPrestamo() {
     rlutil::cls();
-    cout << "===== MENU PRESTAMO ====="<< endl;
-    cout << "1) Cargar prestamo"<< endl;
-    cout << "2) Mostrar prestamos"<< endl;
-    cout << "3) Buscar prestamo por ID del socio"<< endl;
-    cout << "4) Eliminar prestamo por ID"<< endl;
-    cout << "0) Salir"<< endl;
+
+    int x = 4;
+    int y = 2;
+
+    rlutil::setColor(rlutil::LIGHTCYAN);
+    rlutil::locate(x, y);     cout << "=======================";
+    rlutil::locate(x, y + 1); cout << "     MENU PRESTAMO     ";
+    rlutil::locate(x, y + 2); cout << "=======================";
+
+    rlutil::setColor(rlutil::LIGHTGREEN);
+    rlutil::locate(x, y + 4); cout << "1) Cargar prestamo";
+    rlutil::locate(x, y + 5); cout << "2) Mostrar prestamos";
+    rlutil::locate(x, y + 6); cout << "3) Buscar prestamo por ID del socio";
+    rlutil::locate(x, y + 7); cout << "4) Eliminar prestamo por ID";
+
+    rlutil::setColor(rlutil::LIGHTRED);
+    rlutil::locate(x, y + 9); cout << "0) Salir";
+
+    rlutil::resetColor();
+    rlutil::locate(x, y + 11);
 }
 
 void MenuPrestamo() {
@@ -19,7 +33,7 @@ void MenuPrestamo() {
 
     do {
         MostrarMenuPrestamo();
-        cout << "Opcion: "<< endl;
+        rlutil::locate(4, 12); cout << "Opcion: "<< endl;
         cin >> opcion;
 
         switch(opcion) {
