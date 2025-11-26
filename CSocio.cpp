@@ -4,6 +4,7 @@
 using namespace std;
 
 Socio::Socio(){
+    puntos = 0;
     IdSocio = 0;
     strcpy(Nombre, "SIN NOMBRE");
     strcpy(Categoria, "S/C");
@@ -17,10 +18,10 @@ void Socio::setIdSocio(int id){
 void Socio::setNombre(const char *nom) {
    strcpy(Nombre, nom);
 }
-void Socio::setCategoria(char *Cat){
+void Socio::setCategoria(const char *Cat){
     strcpy(Categoria, Cat);
 }
-void Socio::setTelefono(char *Tel) {
+void Socio::setTelefono(const char *Tel) {
     strcpy(Telefono, Tel);
 }
 void Socio::setEstado(char e) {
@@ -29,17 +30,19 @@ void Socio::setEstado(char e) {
 void Socio::setIncluyeDonacion(char d) {
     IncluyeDonacion = d;
 }
-
+void Socio::setPuntos(int p) {
+    puntos = p;
+}
 int Socio::getIdSocio(){
     return IdSocio;
 }
 const char* Socio::getNombre() {
     return Nombre;
 }
-char *Socio::getCategoria(){
+const char *Socio::getCategoria(){
     return Categoria;
 }
-char *Socio::getTelefono(){
+const char *Socio::getTelefono(){
     return Telefono;
 }
 char Socio::getEstado(){
@@ -49,3 +52,6 @@ char Socio::getIncluyeDonacion(){
     return IncluyeDonacion;
 }
 
+int Socio::getPuntos() {
+    return puntos;
+}

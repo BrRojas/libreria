@@ -5,6 +5,7 @@
 #include <vector>
 #include "Fecha.h"
 #include "SocioManager.h"
+#include "VetadosManager.h"
 #include "CSocio.h"
 using namespace std;
 
@@ -16,7 +17,7 @@ void PrestamoManager::CargarPrestamo() {
     Fecha fechaPrestamo, fechaDevolucion;
 
     bool encontradoSocio = false;
-    
+
     do {
         cout << "Ingrese el Id del socio: ";
         cin >> idSocio;
@@ -79,7 +80,7 @@ void PrestamoManager::CargarPrestamo() {
     p.setIdPrestamo(idNuevo);
 
     FILE* archivo = fopen("prestamos.dat", "ab");
-    
+
     if(archivo == NULL) {
         cout << "No se pudo abrir el archivo de Prestamos" << endl;
         return;
@@ -121,7 +122,7 @@ void PrestamoManager::BuscarIdPrestamoSocio() {
         cout << endl << "Ingresar una id valida (debe ser mayor a 0): ";
         cin >> id;
     }
-    
+
     FILE* archivo = fopen("prestamos.dat", "rb");
     if(archivo == nullptr) {
         cout << "No hay ningun prestamo agregado hasta el momento" << endl;

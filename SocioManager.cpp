@@ -1,8 +1,8 @@
 #include <iostream>
+#include "CSocio.h"
 #include <cstdio>
 #include "SocioManager.h"
 #include "VetadosManager.h"
-#include "CSocio.h"
 using namespace std;
 
 
@@ -14,7 +14,6 @@ void SocioManager::CargarSocio() {
     char telefono[15];
     char estado;
     char donacion;
-    char categoria[30];
     cout << "Ingrese ID de socio: ";
     cin >> id;
     s.setIdSocio(id);

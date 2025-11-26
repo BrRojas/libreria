@@ -6,7 +6,7 @@ class Libro {
         char isbn[20], genero[35], titulo[40], editorial[35];
         int cantidadEjemplares, id, idAutor, vecesPrestado;
         bool estado;
-
+        int stock;
     public:
         Libro();
         char* getIsbn();
@@ -18,7 +18,7 @@ class Libro {
         int getVecesPrestado();
         bool getEstado();
         int getIdAutor();
-
+        int getStock();
         void setIsbn(char* isbn);
         void setId(int id);
         void setGenero(char* genero);
@@ -28,5 +28,5 @@ class Libro {
         void setVecesPrestado(int vecesPrestado);
         void setEstado(bool estado);
         void setIdAutor(int idAutor);
-
+        void setStock (int stock);
 };
