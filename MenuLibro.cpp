@@ -4,13 +4,27 @@
 using namespace std;
 
 static void MostrarMenuLibro() {
-    cout << "===== MENU LIBRO ====="<< endl;
-    cout << "1) Cargar libro"<< endl;
-    cout << "2) Mostrar libros"<< endl;
-    cout << "3) Buscar por ID"<< endl;
-    cout << "4) Eliminar libro por ID"<< endl;
-    cout << "5) Editar un libro por ID"<< endl;
-    cout << "0) Salir"<< endl;
+    rlutil::cls();
+
+    int x = 4;
+    int y = 2;
+
+    rlutil::setColor(rlutil::LIGHTCYAN);
+    rlutil::locate(x, y);     cout << "====================";
+    rlutil::locate(x, y + 1); cout << "      MENU LIBRO    ";
+    rlutil::locate(x, y + 2); cout << "====================";
+
+    rlutil::setColor(rlutil::LIGHTGREEN);
+    rlutil::locate(x, y + 4); cout << "1) Cargar libro";
+    rlutil::locate(x, y + 5); cout << "2) Mostrar libros";
+    rlutil::locate(x, y + 6); cout << "3) Buscar por ID";
+    rlutil::locate(x, y + 7); cout << "4) Eliminar libro por ID";
+
+    rlutil::setColor(rlutil::LIGHTRED);
+    rlutil::locate(x, y + 9); cout << "0) Salir";
+
+    rlutil::resetColor();
+    rlutil::locate(x, y + 11);
 }
 
 void MenuLibro() {
@@ -18,7 +32,6 @@ void MenuLibro() {
     int opcion;
 
     do {
-        rlutil::cls();
         MostrarMenuLibro();
         cout << "Opcion: "<< endl;
         cin >> opcion;

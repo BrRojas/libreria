@@ -11,14 +11,25 @@ void MenuVetados() {
 
     do {
         rlutil::cls();
-        cout << "========================================" << endl;
-        cout << "    SISTEMA DE GESTION DE VETADOS       " << endl;
-        cout << "========================================" << endl;
-        cout << "1) Cargar vetado" << endl;
-        cout << "2) Mostrar lista" << endl;
-        cout << "3) Buscar por ID" << endl;
-        cout << "0) Salir" << endl;
-        cout << "Seleccione una opcion: ";
+
+        int x = 4;
+        int y = 2;
+
+        rlutil::setColor(rlutil::LIGHTCYAN);
+        rlutil::locate(x, y);     cout << "========================================";
+        rlutil::locate(x, y + 1); cout << "   SISTEMA DE GESTION DE VETADOS   ";
+        rlutil::locate(x, y + 2); cout << "========================================";
+
+        rlutil::setColor(rlutil::LIGHTGREEN);
+        rlutil::locate(x, y + 4); cout << "1) Cargar vetado";
+        rlutil::locate(x, y + 5); cout << "2) Mostrar lista";
+        rlutil::locate(x, y + 6); cout << "3) Buscar por ID";
+
+        rlutil::setColor(rlutil::LIGHTRED);
+        rlutil::locate(x, y + 8); cout << "0) Salir";
+
+        rlutil::resetColor();
+        rlutil::locate(x, y + 10); cout << "Seleccione una opcion: ";
         cin >> opcion;
 
         switch(opcion) {
