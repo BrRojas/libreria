@@ -58,6 +58,7 @@ void LibroManager::CargarLibro() {
 
     if(fwrite(&l, sizeof(Libro), 1, archivo) != 1) {
         cout << "Error intentando agregar el libro." << endl;
+        fclose(archivo);
         return;
     }
     fclose(archivo);
@@ -296,7 +297,7 @@ bool LibroManager::ManejarStock(int id, int cantidad) {
     while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
         if (aux.getId() == id) {
             encontrado = true;
-            if(aux.getCantidadEjemplares() + cantidad == -1) {
+            if(aux.getCantidadEjemplares() + cantidad < 0) {
                 cout << "No quedan mas ejemplares del libro" << endl;
                 fclose(archivo);
                 return false;
