@@ -7,6 +7,7 @@
 #include "MenuSocio.h"
 #include "MenuSuscripcion.h"
 #include "MenuPrestamo.h"
+#include "MenuAutor.h"
 using namespace std;
 
 void ejecutar() {
@@ -19,9 +20,8 @@ void ejecutar() {
 
         switch (opcion) {
             case 1:
-                cout << "menuAutores" << endl;
-                cout << "\nPresione una tecla para continuar...";
-                rlutil::anykey();
+                rlutil::cls();
+                MenuAutor();
                 break;
             case 2:
                 rlutil::cls();
