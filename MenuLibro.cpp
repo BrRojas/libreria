@@ -38,28 +38,34 @@ void MenuLibro() {
 
         switch(opcion) {
         case 1:
+            rlutil::cls();
             manager.CargarLibro();
             rlutil::anykey();
             break;
         case 2:
+            rlutil::cls();
             manager.MostrarLibros();
             rlutil::anykey();
             break;
         case 3:
+            rlutil::cls();
             manager.BuscarIdLibro();
             rlutil::anykey();
             break;
         case 4:
+            rlutil::cls();
             manager.BorrarLibro();
             rlutil::anykey();
             break;
         case 5:
+            rlutil::cls();
             manager.EditarLibro();
             rlutil::anykey();
             break;
         case 0:
             break;
         default:
+            rlutil::cls();
             cout << "OPCION INCORRECTA" << endl;
             cout << "\nPresione una tecla para continuar...";
             rlutil::anykey();

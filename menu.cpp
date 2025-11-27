@@ -36,8 +36,8 @@ void ejecutar() {
                 MenuSuscripcion();
                 break;
             case 5:
+                rlutil::cls();
                 MenuPrestamo();
-                rlutil::anykey();
                 break;
             case 6:
                 cout << "menuReportes" << endl;

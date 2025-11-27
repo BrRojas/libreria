@@ -532,3 +532,18 @@
 
 1764222921 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menuautor.h
 
+1764222906 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\autormanager.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+	"AutorManager.h"
+
+1764222869 c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\autormanager.h
+	"Autor.h"
+
+1764222936 source:c:\users\braia\desktop\trabajos de la facu\ejercicios-facu\libreria\libreria\menuautor.cpp
+	<iostream>
+	"MenuAutor.h"
+	"AutorManager.h"
+	"rlutil.h"
+

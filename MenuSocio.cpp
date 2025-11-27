@@ -38,24 +38,29 @@ void MenuSocio() {
 
         switch(opcion) {
         case 1:
+            rlutil::cls();
             manager.CargarSocio();
             rlutil::anykey();
             break;
         case 2:
+            rlutil::cls();
             manager.MostrarSocios();
             rlutil::anykey();
             break;
         case 3:
+            rlutil::cls();
             manager.BuscarIdSocio();
             rlutil::anykey();
             break;
         case 4:
+            rlutil::cls();
             manager.SumarPuntosManual();
             rlutil::anykey();
             break;
         case 0:
             break;
         default:
+            rlutil::cls();
             cout << "OPCION INCORRECTA" << endl;
             cout << "\nPresione una tecla para continuar...";
             rlutil::anykey();
