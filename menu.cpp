@@ -39,11 +39,6 @@ void ejecutar() {
                 rlutil::cls();
                 MenuPrestamo();
                 break;
-            /*case 6:
-                cout << "menuReportes" << endl;
-                cout << "\nPresione una tecla para continuar...";
-                rlutil::anykey();
-                break; */
             case 6:
                 rlutil::cls();
                 MenuVetados();
@@ -77,8 +72,6 @@ void mostrarMenuPrincipal() {
     rlutil::locate(x, y + 6); cout << "3) Gestion de Socios";
     rlutil::locate(x, y + 7); cout << "4) Gestion de Suscripciones";
     rlutil::locate(x, y + 8); cout << "5) Gestion de Prestamos";
-    //rlutil::locate(x, y + 9); cout << "6) Reportes";
-    rlutil::locate(x, y + 9); cout << "6) Gestion de Vetados";
 
     rlutil::setColor(rlutil::LIGHTRED);
     rlutil::locate(x, y + 12); cout << "0) Salir";
