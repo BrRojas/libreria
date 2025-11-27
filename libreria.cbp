@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="Autor.cpp" />
 		<Unit filename="Autor.h" />
+		<Unit filename="AutorManager.cpp" />
+		<Unit filename="AutorManager.h" />
 		<Unit filename="Betados.cpp" />
 		<Unit filename="Betados.h" />
 		<Unit filename="CSocio.cpp" />
@@ -44,6 +46,8 @@
 		<Unit filename="Libro.h" />
 		<Unit filename="LibroManager.cpp" />
 		<Unit filename="LibroManager.h" />
+		<Unit filename="MenuAutor.cpp" />
+		<Unit filename="MenuAutor.h" />
 		<Unit filename="MenuLibro.cpp" />
 		<Unit filename="MenuLibro.h" />
 		<Unit filename="MenuPrestamo.cpp" />
