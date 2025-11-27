@@ -6,7 +6,7 @@ public:
     void CargarSuscripcion();
     void MostrarSuscripciones();
     void BuscarPorIdSocio();
-    void RenovarAutomaticas();
     void SuscripcionCout(Suscripcion s);
     void ModificarSuscripcion();
+    void SumarUnMesPorSocio();
 };

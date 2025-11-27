@@ -6,7 +6,6 @@ class Suscripcion {
   Fecha fechaInicio;
   Fecha fechaFin;
   bool estado;
-  bool renovacionAutomatica;
 
   public:
       Suscripcion();
@@ -15,14 +14,12 @@ class Suscripcion {
   void setFechaInicio(Fecha);
   void setFechaFin(Fecha);
   void setEstado(bool);
-  void setRenovacionAutomatica(bool);
   int  getIdSuscripcion();
   int  getIdSocio();
   Fecha getFechaInicio();
   Fecha getFechaFin();
   bool getEstado();
-  bool getRenovacionAutomatica();
 
   bool vigente(const Fecha& hoy);
-  void renovacionMensual();
+  void agregarUnMes();
 };

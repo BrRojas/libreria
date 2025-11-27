@@ -111,3 +111,7 @@ long Fecha::diasEntre(const Fecha& otra) const {
 
     return d2 - d1;
 }
+
+int Fecha::diasEnMes(int m, int a) {
+    return ::diasEnMes(m, a);
+}

@@ -21,6 +21,7 @@ public:
     int getMes();
     int getAnio();
     long diasEntre(const Fecha& otra) const;
+    static int diasEnMes(int m, int a);
 };
 
 #endif

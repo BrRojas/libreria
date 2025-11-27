@@ -28,7 +28,7 @@ static void mostrarMenuSuscripcion() {
 
     rlutil::setColor(rlutil::YELLOW);
     rlutil::locate(x, y + 8);
-    cout << "4) Renovar automaticas (segun fecha ingresada)";
+    cout << "4) Sumar un mes por ID de socio";
     rlutil::locate(x, y + 9);
     cout << "5) Modificar suscripcion";
 
@@ -62,7 +62,7 @@ void MenuSuscripcion() {
                 break;
             case 4:
                 rlutil::cls();
-                mgr.RenovarAutomaticas();
+                mgr.SumarUnMesPorSocio();
                 break;
             case 5:
                 rlutil::cls();
