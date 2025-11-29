@@ -1,7 +1,10 @@
 #pragma once
 #include "Suscripcion.h"
+#include "Fecha.h"
 
 class SuscripcionManager {
+private:
+    void VerificarSuscripcionesVencidas();
 public:
     void CargarSuscripcion();
     void MostrarSuscripciones();

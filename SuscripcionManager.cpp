@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include <ctime>
 #include "SuscripcionManager.h"
 #include "CSocio.h"
 #include "VetadosManager.h"
@@ -115,7 +116,42 @@ void SuscripcionManager::CargarSuscripcion() {
     cout << "Suscripcion guardada correctamente.\n";
 }
 
+void SuscripcionManager::VerificarSuscripcionesVencidas() {
+    FILE* a = fopen(SUSC_FILE, "rb+");
+    if (a == nullptr) {
+        return;
+    }
+
+    Suscripcion aux;
+    long pos = 0;
+    
+
+    time_t ahora = time(0);
+    tm* fecha_actual = localtime(&ahora);
+    Fecha hoy(fecha_actual->tm_mday, fecha_actual->tm_mon + 1, fecha_actual->tm_year + 1900);
+
+    while (fread(&aux, sizeof(Suscripcion), 1, a) == 1) {
+        if (aux.getEstado()) {
+
+            // Si la fecha de fin ya pasó, desactivar la suscripción correccion
+            int diff = aux.getFechaFin().diasEntre(hoy);
+
+            if (diff > 0) {
+               aux.setEstado(false);
+                fseek(a, pos, SEEK_SET);
+                fwrite(&aux, sizeof(Suscripcion), 1, a);
+                fseek(a, 0, SEEK_CUR);
+}
+        }
+        pos += sizeof(Suscripcion);
+    }
+    fclose(a);
+}
+
 void SuscripcionManager::MostrarSuscripciones() {
+    // Verificar suscripciones vencidas antes de mostrar
+    VerificarSuscripcionesVencidas();
+    
     FILE* a = fopen(SUSC_FILE, "rb");
     if (a == nullptr) {
         cout << "No hay suscripciones." << endl;
