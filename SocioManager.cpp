@@ -16,6 +16,21 @@ void SocioManager::CargarSocio() {
     char donacion;
     cout << "Ingrese ID de socio: ";
     cin >> id;
+    
+    // Validar ID punto que marco el profesor 
+    FILE* p = fopen("Socios.dat", "rb");
+    if (p != NULL) {
+        Socio temp;
+        while (fread(&temp, sizeof(Socio), 1, p) == 1) {
+            if (temp.getIdSocio() == id) {
+                cout << "ERROR: El ID " << id << " ya existe." << endl;
+                fclose(p);
+                return;
+            }
+        }
+        fclose(p);
+    }
+    
     s.setIdSocio(id);
     cin.ignore();
 
@@ -48,7 +63,7 @@ void SocioManager::CargarSocio() {
 
     s.setIncluyeDonacion(donacion);
 
-    FILE* p = fopen("Socios.dat", "ab");
+    p = fopen("Socios.dat", "ab");
     if (p == NULL) {
         cout << "No se pudo abrir el archivo." << endl;
         return;
