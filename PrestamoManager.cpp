@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include "Beneficios.h"
 #include "PrestamoManager.h"
 #include "Prestamo.h"
 #include <vector>
@@ -46,7 +47,44 @@ void PrestamoManager::CargarPrestamo() {
             cout << "No existe un socio con ese ID o esta vetado. Intente nuevamente." << endl;
         }
     } while (!encontradoSocio);
+    Socio socioData;
+    FILE* archSoc = fopen("Socios.dat", "rb");
+    if (!archSoc) {
+    cout << "No se pudo abrir Socios.dat" << endl;
+    return;
+}
 
+// buscamos la categoria del socio
+    while (fread(&socioData, sizeof(Socio), 1, archSoc) == 1) {
+    if (socioData.getIdSocio() == idSocio) break;
+}
+    fclose(archSoc);
+
+    BeneficiosManager bm;
+    int maxPermitidos = bm.MaxPrestamosSegunCategoria(socioData.getCategoria());
+
+// contamos los prestamos activos actuales
+    FILE* archPrest = fopen("prestamos.dat", "rb");
+    Prestamo pr;
+    int activos = 0;
+
+    if (archPrest != NULL) {
+        while (fread(&pr, sizeof(Prestamo), 1, archPrest) == 1) {
+            if (pr.getIdSocio() == idSocio && pr.getEstado()) {
+                activos++;
+        }
+    }
+    fclose(archPrest);
+}
+
+// validamos el limite
+if (activos >= maxPermitidos) {
+    cout << "LIMITE DE PRÉSTAMOS ALCANZADOS" << endl;
+    cout << "Categoria del socio: " << socioData.getCategoria() << endl;
+    cout << "Maximo permitido: " << maxPermitidos << endl;
+    cout << "Prestamos activos actuales: " << activos << endl;
+    return;
+}
 
 
     cin.ignore();

@@ -16,8 +16,8 @@ void SocioManager::CargarSocio() {
     char donacion;
     cout << "Ingrese ID de socio: ";
     cin >> id;
-    
-    // Validar ID punto que marco el profesor 
+
+    // Validar ID punto que marco el profesor
     FILE* p = fopen("Socios.dat", "rb");
     if (p != NULL) {
         Socio temp;
@@ -30,7 +30,7 @@ void SocioManager::CargarSocio() {
         }
         fclose(p);
     }
-    
+
     s.setIdSocio(id);
     cin.ignore();
 
@@ -138,6 +138,25 @@ void SocioManager::BuscarIdSocio() {
 
     fclose(p);
 }
+
+bool SocioManager::ExisteSocio(int idBuscado) {
+    FILE* p = fopen("Socios.dat", "rb");
+    if (!p) return false;
+
+    Socio s;
+
+    while (fread(&s, sizeof(Socio), 1, p) == 1) {
+        if (s.getIdSocio() == idBuscado) {
+            fclose(p);
+            return true;
+        }
+    }
+
+    fclose(p);
+    return false;
+}
+
+
 void SocioManager::SumarPuntos(int idSocio, int puntos) {
     FILE* f = fopen("Socios.dat", "rb+");
     if (!f) return;
@@ -218,6 +237,114 @@ void SocioManager::SumarPuntos(int idSocio, int puntos) {
 
 }
 
+void SocioManager::ModificarSocio() {
+    int idBuscado;
+    cout << "Ingrese el ID del socio a modificar: ";
+    cin >> idBuscado;
+
+    FILE* f = fopen("Socios.dat", "rb+");
+    if (!f) {
+        cout << "No se pudo abrir el archivo." << endl;
+        return;
+    }
+
+    Socio s;
+    long pos = 0;
+    bool encontrado = false;
+
+    // Buscamos el socio por ID
+    while (fread(&s, sizeof(Socio), 1, f) == 1) {
+        if (s.getIdSocio() == idBuscado) {
+            encontrado = true;
+            break;
+        }
+        pos += sizeof(Socio);
+    }
+
+    if (!encontrado) {
+        cout << "No existe un socio con ese ID." << endl;
+        fclose(f);
+        return;
+    }
+
+    cout << "=== DATOS ACTUALES ===" << endl;
+    cout << "Nombre: " << s.getNombre() << endl;
+    cout << "Telefono: " << s.getTelefono() << endl;
+    cout << "Estado (1 activo / 0 inactivo): " << s.getEstado() << endl;
+    cout << "Incluye donacion (1 si / 0 no): " << s.getIncluyeDonacion() << endl;
+    cout << "Puntos: " << s.getPuntos() << endl;
+    cout << "Categoria: " << s.getCategoria() << endl;
+
+    cout << "=== MODIFICANDO DATOS ===" << endl;
+
+    char opcion;
+    char NuevoDato[50];
+
+    // Modificamos nombre
+    cout << "¿Modificar nombre? (s/n): ";
+    cin >> opcion;
+    cin.ignore();
+    if (opcion == 's' || opcion == 'S') {
+        cout << "Nuevo nombre: ";
+        cin.getline(NuevoDato, 50);
+        s.setNombre(NuevoDato);
+    }
+
+    // Modificamos telefono
+    cout << "¿Modificar telefono? (s/n): ";
+    cin >> opcion;
+    cin.ignore();
+    if (opcion == 's' || opcion == 'S') {
+        cout << "Nuevo telefono: ";
+        cin.getline(NuevoDato, 15);
+        s.setTelefono(NuevoDato);
+    }
+
+    // Modificamos estado
+    cout << "¿Modificar estado (1 activo / 0 inactivo)? (s/n): ";
+    cin >> opcion;
+    if (opcion == 's' || opcion == 'S') {
+        char est;
+        cout << "Nuevo estado: ";
+        cin >> est;
+        while (est != '0' && est != '1') {
+            cout << "ERROR. Ingrese 1 o 0: ";
+            cin >> est;
+        }
+        s.setEstado(est);
+    }
+
+    // Modificamos donacion
+    cout << "¿Modificar donacion (1 si / 0 no)? (s/n): ";
+    cin >> opcion;
+    if (opcion == 's' || opcion == 'S') {
+        char don;
+        cout << "Nuevo valor (1 si / 0 no): ";
+        cin >> don;
+        while (don != '0' && don != '1') {
+            cout << "ERROR. Ingrese 1 o 0: ";
+            cin >> don;
+        }
+        s.setIncluyeDonacion(don);
+    }
+
+    // Confirmacion
+    cout << "\n¿Desea guardar los cambios? (s/n): ";
+    cin >> opcion;
+    if (opcion != 's' && opcion != 'S') {
+        cout << "Cambios cancelados." << endl;
+        fclose(f);
+        return;
+    }
+
+    // Guardamos en archivo
+    fseek(f, pos, SEEK_SET);
+    fwrite(&s, sizeof(Socio), 1, f);
+
+    fclose(f);
+
+    cout << "\nDatos actualizados correctamente." << endl;
+}
 
 
 

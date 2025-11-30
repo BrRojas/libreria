@@ -1,4 +1,5 @@
 #include "VetadosManager.h"
+#include "SocioManager.h"
 #include "Betados.h"
 #include <iostream>
 #include <cstring>
@@ -12,11 +13,21 @@ void VetadosManager::CargarVetados() {
     cout << "Ingrese ID del vetado: ";
     cin >> id;
 
+    SocioManager sm;
+    if (!sm.ExisteSocio(id)) {
+        cout << "No existe un socio con ese ID. No se puede vetar." << endl;
+        return;
+    }
+
+    if (EstaVetado(id)) {
+        cout << "El socio ya esta vetado." << endl;
+        return;
+    }
+
     vetado.setIdVetados(id);
 
-    if(vetado.getIdVetados() != 0) {
-        FILE* archivo = fopen("Vetados.dat", "ab");
-        if(archivo != nullptr) {
+    FILE* archivo = fopen("Vetados.dat", "ab");
+    if(archivo != nullptr) {
             fwrite(&vetado, sizeof(Vetados), 1, archivo);
             fclose(archivo);
             cout << "Vetado guardado correctamente"<< endl;
@@ -25,7 +36,7 @@ void VetadosManager::CargarVetados() {
             cout << "No se pudo abrir el archivo"<< endl;
         }
     }
-}
+
 
 
 void VetadosManager::MostrarVetados() {
