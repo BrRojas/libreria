@@ -10,6 +10,7 @@
 #include "VetadosManager.h"
 #include "CSocio.h"
 #include "LibroManager.h"
+#include "rlutil.h"
 using namespace std;
 
 void PrestamoManager::CargarPrestamo() {
@@ -300,6 +301,7 @@ void PrestamoManager::PrestamoCout(Prestamo p) {
     }
 
     // ========= IMPRIMIR PRESTAMO COMPLETO =========
+    rlutil::setColor(rlutil::YELLOW);
     cout << endl << "ID del prestamo: " << p.getIdPrestamo() << endl;
 
     cout << "ID del socio: " << p.getIdSocio();
