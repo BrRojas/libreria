@@ -2,7 +2,28 @@
 #include <cstdio>
 #include "LibroManager.h"
 #include <vector>
+#include <cstring>
+#include <cctype>
 using namespace std;
+
+
+// Pasa una cadena a minúsculas (con límite de tamaño)
+static void aMinusculas(const char* origen, char* destino, int tamMax) {
+    int i = 0;
+    for (; i < tamMax - 1 && origen[i] != '\0'; i++) {
+        destino[i] = tolower((unsigned char)origen[i]);
+    }
+    destino[i] = '\0';
+}
+
+// Devuelve true si 'texto' contiene 'filtro' (ignorando mayúsculas/minúsculas)
+static bool contieneTextoCI(const char* texto, const char* filtro) {
+    char t[100], f[100];
+    aMinusculas(texto, t, 100);
+    aMinusculas(filtro, f, 100);
+
+    return strstr(t, f) != nullptr;  // substring
+}
 
 
 void LibroManager::CargarLibro() {
@@ -322,6 +343,68 @@ bool LibroManager::ManejarStock(int id, int cantidad) {
 
     cout << "Stock del libro actualizado correctamente." << endl;
     return true;
+}
+
+void LibroManager::BuscarPorGenero() {
+    char generoBuscado[35];
+
+    cin.ignore(); // limpiar el \n que pudo quedar
+    cout << "Ingrese el genero a buscar: ";
+    cin.getline(generoBuscado, 35);
+
+    FILE* archivo = fopen("libros.dat", "rb");
+    if (archivo == nullptr) {
+        cout << "No hay libros cargados." << endl;
+        return;
+    }
+
+    Libro aux;
+    bool alguno = false;
+
+    cout << "\n=== LIBROS DEL GENERO: " << generoBuscado << " ===\n";
+
+    while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
+        if (aux.getCantidadEjemplares() > 0 &&
+            contieneTextoCI(aux.getGenero(), generoBuscado)) {
+            alguno = true;
+            LibroCout(aux);
+        }
+    }
+
+    fclose(archivo);
+
+    if (!alguno) cout << "No se encontraron libros para ese genero." << endl;
+}
+
+void LibroManager::BuscarPorTitulo() {
+    char tituloBuscado[40];
+
+    cin.ignore();
+    cout << "Ingrese parte del titulo a buscar: ";
+    cin.getline(tituloBuscado, 40);
+
+    FILE* archivo = fopen("libros.dat", "rb");
+    if (archivo == nullptr) {
+        cout << "No hay libros cargados." << endl;
+        return;
+    }
+
+    Libro aux;
+    bool alguno = false;
+
+    cout << "\n=== LIBROS QUE COINCIDEN CON: " << tituloBuscado << " ===\n";
+
+    while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
+        if (aux.getCantidadEjemplares() > 0 &&
+            contieneTextoCI(aux.getTitulo(), tituloBuscado)) {
+            alguno = true;
+            LibroCout(aux);
+        }
+    }
+
+    fclose(archivo);
+
+    if (!alguno) cout << "No se encontraron libros para ese titulo." << endl;
 }
 
 void LibroManager::LibroCout(Libro l) {

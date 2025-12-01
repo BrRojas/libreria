@@ -16,4 +16,8 @@ public:
     int CantidadLibrosSinStock();
     void ReporteLibrosStock();
 
+    //filtros
+    void BuscarPorGenero();
+    void BuscarPorTitulo();
+
 };
