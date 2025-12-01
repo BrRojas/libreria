@@ -28,7 +28,9 @@ static bool existeSocio(int id) {
 }
 
 //  Verificamos si ya tiene una suscripcion activa
-static bool tieneSuscripcionActiva(int idSocio) {
+bool SuscripcionManager::tieneSuscripcionActiva(int idSocio) {
+    VerificarSuscripcionesVencidas();  // actualiza vencidas antes de validar
+
     FILE* f = fopen(SUSC_FILE, "rb");
     if (!f) return false;
 
@@ -39,7 +41,6 @@ static bool tieneSuscripcionActiva(int idSocio) {
             return true;
         }
     }
-
     fclose(f);
     return false;
 }
