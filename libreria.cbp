@@ -36,6 +36,8 @@
 		<Unit filename="Autor.h" />
 		<Unit filename="AutorManager.cpp" />
 		<Unit filename="AutorManager.h" />
+		<Unit filename="Beneficios.h" />
+		<Unit filename="BeneficiosManager.cpp" />
 		<Unit filename="Betados.cpp" />
 		<Unit filename="Betados.h" />
 		<Unit filename="CSocio.cpp" />
