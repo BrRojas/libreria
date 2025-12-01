@@ -269,11 +269,59 @@ void PrestamoManager::DevolucionPrestamo() {
 // sacar estado logico poniendo estado en false
 
 void PrestamoManager::PrestamoCout(Prestamo p) {
+    // ======= BUSCAR NOMBRE DEL SOCIO =======
+    char nombreSocio[30] = "Desconocido";
+
+    FILE* fSoc = fopen("Socios.dat", "rb");
+    if (fSoc != nullptr) {
+        Socio s;
+        while (fread(&s, sizeof(Socio), 1, fSoc) == 1) {
+            if (s.getIdSocio() == p.getIdSocio()) {
+                strcpy(nombreSocio, s.getNombre());
+                break;
+            }
+        }
+        fclose(fSoc);
+    }
+
+    // ======= BUSCAR NOMBRE DEL LIBRO =======
+    char nombreLibro[50] = "Desconocido";
+
+    FILE* fLib = fopen("libros.dat", "rb");
+    if (fLib != nullptr) {
+        Libro l;
+        while (fread(&l, sizeof(Libro), 1, fLib) == 1) {
+            if (l.getId() == p.getIdLibro()) {
+                strcpy(nombreLibro, l.getTitulo());
+                break;
+            }
+        }
+        fclose(fLib);
+    }
+
+    // ========= IMPRIMIR PRESTAMO COMPLETO =========
     cout << endl << "ID del prestamo: " << p.getIdPrestamo() << endl;
-    cout << "ID del socio: " << p.getIdSocio() << endl;
-    cout << "ID Libro: " << p.getIdLibro() << endl;
-    cout << "Fecha del prestamo: " << p.getFechaPrestamo().getDia() << "/" << p.getFechaPrestamo().getMes() << "/" << p.getFechaPrestamo().getAnio() << endl;
-    cout << "Fecha de devolucion: " << p.getFechaDevolucion().getDia() << "/" << p.getFechaDevolucion().getMes() << "/" << p.getFechaDevolucion().getAnio() << endl;
-    cout << "Estado: " << (p.getEstado() == true ? "El prestamo esta activo" : "El prestamo esta inactivo") << endl;
-    cout << "----------------------------";
+
+    cout << "ID del socio: " << p.getIdSocio();
+    cout << "  | Nombre: " << nombreSocio << endl;
+
+    cout << "ID Libro: " << p.getIdLibro();
+    cout << "  | Libro: " << nombreLibro << endl;
+
+    cout << "Fecha del prestamo: "
+         << p.getFechaPrestamo().getDia() << "/"
+         << p.getFechaPrestamo().getMes() << "/"
+         << p.getFechaPrestamo().getAnio() << endl;
+
+    cout << "Fecha de devolucion: "
+         << p.getFechaDevolucion().getDia() << "/"
+         << p.getFechaDevolucion().getMes() << "/"
+         << p.getFechaDevolucion().getAnio() << endl;
+
+    cout << "Estado: "
+         << (p.getEstado() ? "Activo" : "Inactivo")
+         << endl;
+
+    cout << "-------------------------------------" << endl;
 }
+
