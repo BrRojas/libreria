@@ -13,4 +13,9 @@ public:
     void ModificarSuscripcion();
     void SumarUnMesPorSocio();
     bool tieneSuscripcionActiva(int idSocio);
+
+    //reportes
+    int CantidadActivas();
+    int CantidadInactivas();
+    void Reportes();
 };

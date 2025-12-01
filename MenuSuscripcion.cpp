@@ -30,6 +30,10 @@ static void mostrarMenuSuscripcion() {
     rlutil::locate(x, y + 8);
     cout << "5) Modificar suscripcion";
 
+    rlutil::setColor(rlutil::YELLOW);
+    rlutil::locate(x, y + 10);
+    cout << "6) Reporte de suscripciones activas / inactivas";
+
     rlutil::setColor(rlutil::LIGHTRED);
     rlutil::locate(x, y + 11);
     cout << "0) Volver";
@@ -66,6 +70,11 @@ void MenuSuscripcion() {
                 rlutil::cls();
                 mgr.ModificarSuscripcion();
                 break;
+            case 6:
+                rlutil::cls();
+                mgr.Reportes();
+                break
+                ;
             case 0:
                 break;
             default:

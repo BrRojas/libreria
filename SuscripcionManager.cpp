@@ -5,6 +5,7 @@
 #include "SuscripcionManager.h"
 #include "CSocio.h"
 #include "VetadosManager.h"
+#include "rlutil.h"
 using namespace std;
 
 static const char* SUSC_FILE = "suscripciones.dat";
@@ -331,3 +332,49 @@ void SuscripcionManager::SumarUnMesPorSocio() {
     cout << "Suscripciones actualizadas: " << cant << endl;
 }
 
+// --------------Reportes-----------------------------------------
+
+int SuscripcionManager::CantidadActivas() {
+    VerificarSuscripcionesVencidas();  // actualiza vencidas antes de contar
+
+    FILE* f = fopen(SUSC_FILE, "rb");
+    if (!f) return 0;
+
+    Suscripcion aux;
+    int contador = 0;
+    while (fread(&aux, sizeof(Suscripcion), 1, f) == 1) {
+        if (aux.getEstado()) {
+            contador++;
+        }
+    }
+    fclose(f);
+    return contador;
+}
+
+int SuscripcionManager::CantidadInactivas() {
+    VerificarSuscripcionesVencidas();  // actualiza vencidas antes de contar
+
+    FILE* f = fopen(SUSC_FILE, "rb");
+    if (!f) return 0;
+
+    Suscripcion aux;
+    int contador = 0;
+    while (fread(&aux, sizeof(Suscripcion), 1, f) == 1) {
+        if (!aux.getEstado()) {
+            contador++;
+        }
+    }
+    fclose(f);
+    return contador;
+}
+
+ //submenu de reportes
+    void SuscripcionManager::Reportes() {
+        int activas = CantidadActivas();
+        int inactivas = CantidadInactivas();
+
+        rlutil::setColor(rlutil::YELLOW);
+        cout << "====== REPORTE DE SUSCRIPCIONES ======" << endl;
+        cout << "Cantidad de suscripciones activas: " << activas << endl;
+        cout << "Cantidad de suscripciones inactivas: " << inactivas << endl;
+    }
