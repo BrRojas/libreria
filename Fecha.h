@@ -13,6 +13,8 @@ public:
 
     void cargar();
     void mostrar();
+    void cargarFechaActual();
+    void sumarDias(int n);
 
     void setDia(int d);
     void setMes(int m);

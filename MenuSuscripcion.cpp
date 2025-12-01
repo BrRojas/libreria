@@ -25,11 +25,9 @@ static void mostrarMenuSuscripcion() {
     cout << "2) Listar suscripciones";
     rlutil::locate(x, y + 6);
     cout << "3) Buscar por ID de socio";
-
-    rlutil::setColor(rlutil::YELLOW);
-    rlutil::locate(x, y + 8);
+    rlutil::locate(x, y + 7);
     cout << "4) Sumar un mes por ID de socio";
-    rlutil::locate(x, y + 9);
+    rlutil::locate(x, y + 8);
     cout << "5) Modificar suscripcion";
 
     rlutil::setColor(rlutil::LIGHTRED);

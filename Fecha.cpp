@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Fecha.h"
+#include <ctime>
 using namespace std;
 
 
@@ -114,4 +115,30 @@ long Fecha::diasEntre(const Fecha& otra) const {
 
 int Fecha::diasEnMes(int m, int a) {
     return ::diasEnMes(m, a);
+}
+
+//con libreria cargamos la fecha actual para validaciones
+void Fecha::cargarFechaActual() {
+    time_t t = time(0);
+    tm* now = localtime(&t);
+
+    dia  = now->tm_mday;
+    mes  = now->tm_mon + 1;
+    anio = now->tm_year + 1900;
+}
+
+void Fecha::sumarDias(int n) {
+    while (n > 0) {
+        dia++;
+        int maxD = diasEnMes(mes, anio);
+        if (dia > maxD) {
+            dia = 1;
+            mes++;
+            if (mes > 12) {
+                mes = 1;
+                anio++;
+            }
+        }
+        n--;
+    }
 }

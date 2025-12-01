@@ -54,7 +54,7 @@ void MenuPrestamo() {
             break;
         case 4:
             rlutil::cls();
-            manager.BorrarPrestamo();
+            manager.DevolucionPrestamo();
             rlutil::anykey();
             break;
         case 0:
@@ -62,7 +62,7 @@ void MenuPrestamo() {
         default:
             rlutil::cls();
             cout << "OPCION INCORRECTA" << endl;
-            cout << "\nPresione una tecla para continuar...";
+            cout << "Presione una tecla para continuar..." << endl;
             rlutil::anykey();
         }
 

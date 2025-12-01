@@ -12,4 +12,5 @@ public:
     void SuscripcionCout(Suscripcion s);
     void ModificarSuscripcion();
     void SumarUnMesPorSocio();
+    bool tieneSuscripcionActiva(int idSocio);
 };

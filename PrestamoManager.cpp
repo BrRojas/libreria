@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include "SuscripcionManager.h"
 #include "Beneficios.h"
 #include "PrestamoManager.h"
 #include "Prestamo.h"
@@ -47,6 +48,12 @@ void PrestamoManager::CargarPrestamo() {
             cout << "No existe un socio con ese ID o esta vetado. Intente nuevamente." << endl;
         }
     } while (!encontradoSocio);
+
+    SuscripcionManager smSusc;
+    if (!smSusc.tieneSuscripcionActiva(idSocio)) {
+    cout << "ERROR: El socio NO posee una suscripcion activa y no puede realizar préstamos." << endl;
+    return;
+}
     Socio socioData;
     FILE* archSoc = fopen("Socios.dat", "rb");
     if (!archSoc) {
@@ -76,6 +83,7 @@ void PrestamoManager::CargarPrestamo() {
     }
     fclose(archPrest);
 }
+
 
 // validamos el limite
 if (activos >= maxPermitidos) {
@@ -108,14 +116,9 @@ if (activos >= maxPermitidos) {
     p.setFechaPrestamo(fechaPrestamo);
     p.setFechaDevolucion(fechaDevolucion);
     p.setEstado(true);
-    long dias = fechaPrestamo.diasEntre(fechaDevolucion);
-    SocioManager sm;
-        if (dias <= 31) {
-        sm.SumarPuntos(idSocio, 10);
-        }
-        else {
-        sm.SumarPuntos(idSocio, -20);
-        }
+    SocioManager smPuntos;
+    smPuntos.SumarPuntos(idSocio, 10);
+
     FILE *pArchivo = fopen("prestamos.dat", "rb");
     if(pArchivo != NULL) {
         fseek(pArchivo, 0, SEEK_END);
@@ -192,13 +195,13 @@ void PrestamoManager::BuscarIdPrestamoSocio() {
     }
 }
 
-void PrestamoManager::BorrarPrestamo() {
+void PrestamoManager::DevolucionPrestamo() {
     int id, idLibro;
     cout << "Ingresar el ID del prestamo: ";
     cin >> id;
 
     while (id <= 0) {
-        cout << "ID inválido. Ingrese un número mayor a 0: ";
+        cout << "ID inválido. Ingrese un numero mayor a 0: ";
         cin >> id;
     }
 
@@ -216,11 +219,28 @@ void PrestamoManager::BorrarPrestamo() {
     while (fread(&aux, sizeof(Prestamo), 1, archivo) == 1) {
         if (aux.getIdPrestamo() == id) {
             encontrado = true;
-            aux.setEstado(false);  // Cambiar estado a false
+            aux.setEstado(false);  // Cambiamos estado a false
             idLibro = aux.getIdLibro();
-            cout << "\nPrestamo encontrado y marcado como inactivo:\n";
+            cout << "Prestamo encontrado y marcado como inactivo:" << endl;
             PrestamoCout(aux);
+                    Fecha hoy;
+        hoy.cargarFechaActual();  // funcion en fecha
+
+        long diasTranscurridos = aux.getFechaPrestamo().diasEntre(hoy);
+
+        SocioManager smPuntos;
+
+        if (diasTranscurridos <= 31) {
+            smPuntos.SumarPuntos(aux.getIdSocio(), 10);
+            cout << "El socio devolvió a tiempo. Se suman +10 puntos." << endl;
         }
+        else {
+            smPuntos.SumarPuntos(aux.getIdSocio(), -20); //en este caso lo resta
+            cout << "El socio devolvió fuera de término. Se restan -20 puntos." << endl;
+        }
+        // ================================
+    }
+
         prestamos.push_back(aux);   // guardar todos los prestamos (incluyendo el modificado)
     }
     fclose(archivo);

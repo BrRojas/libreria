@@ -19,7 +19,7 @@ static void MostrarMenuSocio() {
     rlutil::locate(x, y + 5); cout << "2) Mostrar socios";
     rlutil::locate(x, y + 6); cout << "3) Buscar por ID";
     rlutil::locate(x, y + 7); cout << "4) Sumar o restar puntos manualmente";
-    rlutil::locate(x, y + 7); cout << "5) Modificar datos del socio";
+    rlutil::locate(x, y + 8); cout << "5) Modificar datos del socio";
     rlutil::setColor(rlutil::LIGHTRED);
     rlutil::locate(x, y + 9); cout << "0) Salir";
 

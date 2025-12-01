@@ -33,13 +33,14 @@ Fecha Suscripcion::getFechaFin(){ return fechaFin; }
 bool Suscripcion::getEstado(){ return estado; }
 
 bool Suscripcion::vigente(const Fecha& hoy){
-  Fecha h = hoy;
   if (!estado) return false;
-  // h debe estar entre [fechaInicio, fechaFin]
-  if (h.diasEntre(fechaInicio) > 0) return false; // h < inicio
-  if (fechaFin.diasEntre(h) > 0) return false;    // h > fin
-  return true;
+  // debe estar entre [fechaInicio, fechaFin]
+    long desdeInicio = fechaInicio.diasEntre(hoy);   // hoy - inicio
+    long hastaFin    = hoy.diasEntre(fechaFin);      // fin - hoy
+
+    return (desdeInicio >= 0 && hastaFin >= 0);
 }
+
 
 void Suscripcion::agregarUnMes(){
   sumarUnMes(fechaFin);

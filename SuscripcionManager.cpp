@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include <ctime>
+#include "SocioManager.h"
 #include "SuscripcionManager.h"
 #include "CSocio.h"
 #include "VetadosManager.h"
@@ -82,10 +83,11 @@ void SuscripcionManager::CargarSuscripcion() {
         }
     }
 
+
     cout << "Fecha de inicio: " << endl;
-    ini.cargar();
-    cout << "Fecha de fin: " << endl;
-    fin.cargar();
+    ini.cargarFechaActual();   // fecha de inicio = hoy
+    fin = ini;                 // copiamos inicio en fin para modificar
+    fin.sumarDias(41);
 
     s.setIdSocio(idSocio);
     s.setFechaInicio(ini);
@@ -122,36 +124,43 @@ void SuscripcionManager::VerificarSuscripcionesVencidas() {
         return;
     }
 
-    Suscripcion aux;
-    long pos = 0;
-    
+Suscripcion aux;
+long pos = 0;
+Fecha hoy;
+hoy.cargarFechaActual();
 
-    time_t ahora = time(0);
-    tm* fecha_actual = localtime(&ahora);
-    Fecha hoy(fecha_actual->tm_mday, fecha_actual->tm_mon + 1, fecha_actual->tm_year + 1900);
+while (fread(&aux, sizeof(Suscripcion), 1, a) == 1) {
 
-    while (fread(&aux, sizeof(Suscripcion), 1, a) == 1) {
-        if (aux.getEstado()) {
+    if (aux.getEstado()) {
+        // Diferencia: fin - hoy
+        long diff = aux.getFechaFin().diasEntre(hoy);
 
-            // Si la fecha de fin ya pasó, desactivar la suscripción correccion
-            int diff = aux.getFechaFin().diasEntre(hoy);
+        // Si hoy > fechaFin /// diff > 0
+        if (diff > 0) {
 
-            if (diff > 0) {
-               aux.setEstado(false);
-                fseek(a, pos, SEEK_SET);
-                fwrite(&aux, sizeof(Suscripcion), 1, a);
-                fseek(a, 0, SEEK_CUR);
-}
+        // Desactivamos suscripción
+        aux.setEstado(false);
+        fseek(a, pos, SEEK_SET);
+        fwrite(&aux, sizeof(Suscripcion), 1, a);
+        fseek(a, 0, SEEK_CUR);
+
+        cout << "Suscripcion vencida detectada. Socio "
+                     << aux.getIdSocio() << " marcado como inactivo." << endl;
+            }
         }
+
         pos += sizeof(Suscripcion);
     }
+
     fclose(a);
 }
+
+
 
 void SuscripcionManager::MostrarSuscripciones() {
     // Verificar suscripciones vencidas antes de mostrar
     VerificarSuscripcionesVencidas();
-    
+
     FILE* a = fopen(SUSC_FILE, "rb");
     if (a == nullptr) {
         cout << "No hay suscripciones." << endl;
@@ -236,8 +245,6 @@ void SuscripcionManager::ModificarSuscripcion() {
 
     int opt;
 
-    // Eliminado: modificacion de renovacion automatica
-
     cout << "Modificar fecha de inicio? (1=si, 0=no): ";
     cin >> opt;
     if (opt == 1) {
@@ -265,38 +272,30 @@ void SuscripcionManager::ModificarSuscripcion() {
         aux.setEstado(est == 1);
     }
 
-    cout << "Modificar ID de socio? (1=si, 0=no): ";
-    cin >> opt;
-    if (opt == 1) {
-        int nuevoId;
-        cout << "Nuevo ID de socio: ";
-        cin >> nuevoId;
-        while (nuevoId <= 0) {
-            cout << "Ingresar una id valida (mayor a 0): ";
-            cin >> nuevoId;
-        }
-        aux.setIdSocio(nuevoId);
-    }
-
-    cout << "\nResumen actualizado:" << endl;
+    cout << "Resumen actualizado:" << endl;
     SuscripcionCout(aux);
     cout << endl;
 
     cout << "Confirmar guardado? (1=si, 0=no): ";
     cin >> opt;
     if (opt == 1) {
-        fseek(a, pos, SEEK_SET);
-        if (fwrite(&aux, sizeof(Suscripcion), 1, a) != 1) {
-            cout << "Error al guardar los cambios." << endl;
-            fclose(a);
-            return;
-        }
-        cout << "Suscripcion actualizada correctamente." << endl;
-    } else {
-        cout << "Cambios descartados." << endl;
+    fseek(a, pos, SEEK_SET);
+    if (fwrite(&aux, sizeof(Suscripcion), 1, a) != 1) {
+        cout << "Error al guardar los cambios." << endl;
+        fclose(a);
+        return;
     }
 
+    cout << "Suscripcion actualizada correctamente." << endl;
+
     fclose(a);
+    VerificarSuscripcionesVencidas();
+    return;
+}
+else {
+    cout << "Cambios descartados." << endl;
+    fclose(a);
+}
 }
 
 void SuscripcionManager::SumarUnMesPorSocio() {
@@ -330,3 +329,4 @@ void SuscripcionManager::SumarUnMesPorSocio() {
     fclose(a);
     cout << "Suscripciones actualizadas: " << cant << endl;
 }
+
