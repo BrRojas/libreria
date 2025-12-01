@@ -2,7 +2,7 @@
 #include "rlutil.h"
 #include "LibroManager.h"
 using namespace std;
-
+// se sobre escribio mal
 static void MostrarMenuLibro() {
     rlutil::cls();
 

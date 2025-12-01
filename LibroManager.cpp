@@ -6,7 +6,7 @@
 #include <cctype>
 using namespace std;
 
-
+//se sobre escribio mal
 // Pasa una cadena a minúsculas (con límite de tamaño)
 static void aMinusculas(const char* origen, char* destino, int tamMax) {
     int i = 0;

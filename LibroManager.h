@@ -1,6 +1,6 @@
 #pragma once
 #include "Libro.h"
-
+//se sobre escribio mal
 class LibroManager {
 public:
     void CargarLibro();
