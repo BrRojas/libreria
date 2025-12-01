@@ -10,4 +10,10 @@ public:
     void LibroCout(Libro l);
     void EditarLibro();
     bool ManejarStock(int id, int cantidad);
+
+    //reportes
+    int CantidadLibrosConStock();
+    int CantidadLibrosSinStock();
+    void ReporteLibrosStock();
+
 };

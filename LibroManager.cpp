@@ -336,3 +336,44 @@ void LibroManager::LibroCout(Libro l) {
     cout << "Estado: " << l.getEstado() << endl;
     cout << "----------------------------";
 }
+
+int LibroManager::CantidadLibrosConStock() {
+    FILE* archivo = fopen("libros.dat", "rb");
+    if (!archivo) return 0;
+
+    Libro aux;
+    int contador = 0;
+
+    while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
+        if (aux.getCantidadEjemplares() > 0) {
+            contador++;
+        }
+    }
+    fclose(archivo);
+    return contador;
+}
+
+int LibroManager::CantidadLibrosSinStock() {
+    FILE* archivo = fopen("libros.dat", "rb");
+    if (!archivo) return 0;
+
+    Libro aux;
+    int contador = 0;
+
+    while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
+        if (aux.getCantidadEjemplares() == 0) {
+            contador++;
+        }
+    }
+    fclose(archivo);
+    return contador;
+}
+
+void LibroManager::ReporteLibrosStock() {
+    int conStock = CantidadLibrosConStock();
+    int sinStock = CantidadLibrosSinStock();
+
+    cout << "====== REPORTE DE LIBROS ======" << endl;
+    cout << "Libros con ejemplares disponibles: " << conStock << endl;
+    cout << "Libros sin ejemplares (stock 0):   " << sinStock << endl;
+}
