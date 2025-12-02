@@ -203,9 +203,24 @@ void SuscripcionManager::BuscarPorIdSocio() {
 
 
 void SuscripcionManager::SuscripcionCout(Suscripcion s) {
+    // ======= BUSCAR NOMBRE DEL SOCIO =======
+    char nombreSocio[30] = "Desconocido";
+
+    FILE* fSoc = fopen(SOCIOS_FILE, "rb");
+    if (fSoc != nullptr) {
+        Socio soc;
+        while (fread(&soc, sizeof(Socio), 1, fSoc) == 1) {
+            if (soc.getIdSocio() == s.getIdSocio()) {
+                strcpy(nombreSocio, soc.getNombre());
+                break;
+            }
+        }
+        fclose(fSoc);
+    }
+
     cout << endl;
     cout << "ID Suscripcion: " << s.getIdSuscripcion() << endl;
-    cout << "ID Socio: " << s.getIdSocio() << endl;
+    cout << "ID Socio: " << s.getIdSocio() << " | Nombre: " << nombreSocio << endl;
     cout << "Inicio: "; s.getFechaInicio().mostrar(); cout << endl;
     cout << "Fin: "; s.getFechaFin().mostrar(); cout << endl;
     cout << "Estado: " << (s.getEstado() ? 1 : 0) << endl;

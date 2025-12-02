@@ -7,6 +7,7 @@ public:
     void MostrarPrestamos();
     void BuscarIdPrestamoSocio();
     void DevolucionPrestamo();
+    void BorrarPrestamo();
     void PrestamoCout(Prestamo p);
 
 };

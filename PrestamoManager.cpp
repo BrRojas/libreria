@@ -267,7 +267,77 @@ void PrestamoManager::DevolucionPrestamo() {
     cout << "Prestamo marcado como inactivo correctamente." << endl;
 }
 
-// sacar estado logico poniendo estado en false
+void PrestamoManager::BorrarPrestamo() {
+    int id;
+    cout << "Ingresar el ID del prestamo a borrar: ";
+    cin >> id;
+
+    while (id <= 0) {
+        cout << "ID inválido. Ingrese un numero mayor a 0: ";
+        cin >> id;
+    }
+
+    FILE* archivo = fopen("prestamos.dat", "rb");
+    if (!archivo) {
+        cout << "No hay ningún prestamo agregado hasta el momento." << endl;
+        return;
+    }
+
+    vector<Prestamo> prestamos;
+    Prestamo aux;
+    bool encontrado = false;
+    int idLibro = 0;
+    bool estabaActivo = false;
+
+    // Leer todos los prestamos
+    while (fread(&aux, sizeof(Prestamo), 1, archivo) == 1) {
+        if (aux.getIdPrestamo() == id) {
+            encontrado = true;
+            idLibro = aux.getIdLibro();
+            estabaActivo = aux.getEstado();
+            cout << "Prestamo encontrado:" << endl;
+            PrestamoCout(aux);
+            // No agregamos este préstamo al vector (lo excluimos)
+        } else {
+            prestamos.push_back(aux);  // Guardar todos los demás préstamos
+        }
+    }
+    fclose(archivo);
+
+    if (!encontrado) {
+        cout << "No encontramos un prestamo con ese ID." << endl;
+        return;
+    }
+
+    // Si el préstamo estaba activo, devolver el libro al stock
+    if (estabaActivo) {
+        LibroManager l;
+        if (!l.ManejarStock(idLibro, 1)) {
+            cout << "Hubo un error manejando el stock del libro." << endl;
+            return;
+        }
+    }
+
+    // Reasignar IDs consecutivos para evitar huecos
+    for (size_t i = 0; i < prestamos.size(); i++) {
+        prestamos[i].setIdPrestamo(i + 1);
+    }
+
+    // Reescribir todo el archivo sin el préstamo eliminado y con IDs reasignados
+    archivo = fopen("prestamos.dat", "wb");
+    if (!archivo) {
+        cout << "Error al abrir el archivo para escribir." << endl;
+        return;
+    }
+
+    for (const Prestamo& p : prestamos) {
+        fwrite(&p, sizeof(Prestamo), 1, archivo);
+    }
+    fclose(archivo);
+
+    cout << "Prestamo borrado completamente del sistema." << endl;
+    cout << "IDs reasignados para mantener secuencia consecutiva." << endl;
+}
 
 void PrestamoManager::PrestamoCout(Prestamo p) {
     // ======= BUSCAR NOMBRE DEL SOCIO =======
