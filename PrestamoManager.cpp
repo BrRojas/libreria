@@ -17,7 +17,7 @@ void PrestamoManager::CargarPrestamo() {
     Prestamo p;
 
     int idSocio, idNuevo = 1, idLibro;
-    Fecha fechaPrestamo, fechaDevolucion;
+    Fecha fechaPrestamo, fechaDevolucion, fechaHoy;
 
     bool encontradoSocio = false;
 
@@ -107,11 +107,40 @@ if (activos >= maxPermitidos) {
         return;
     }
 
-    cout << "Ingrese la fecha del prestamo: ";
-    fechaPrestamo.cargar();
-    cout << "Ingrese la fecha de devolucion: ";
-    fechaDevolucion.cargar();
+// Tomamos la fecha actual para validar que el prestamo sea EXACTAMENTE HOY
+fechaHoy.cargarFechaActual();
 
+// === LA FECHA DE PRESTAMO DEBE SER HOY (no antes, no despues) ===
+while (true) {
+    cout << "Ingrese la fecha del prestamo: " << endl;
+    fechaPrestamo.cargar();
+
+    long difConHoy = fechaHoy.diasEntre(fechaPrestamo);
+    // > 0 = futura, 0 = hoy, < 0 = pasada
+
+    if (difConHoy < 0) {
+        cout << "ERROR: La fecha de prestamo NO puede ser anterior a la fecha actual." << endl;
+        continue;
+    }
+    if (difConHoy > 0) {
+        cout << "ERROR: La fecha de prestamo NO puede ser posterior a la fecha actual." << endl;
+        continue;
+    }
+
+    // Si llegamos acá, la fecha ES HOY
+    break;
+}
+    while (true) {
+        cout << "Ingrese la fecha de devolucion: " << endl;
+        fechaDevolucion.cargar();
+
+        long difConPrestamo = fechaPrestamo.diasEntre(fechaDevolucion);
+        if (difConPrestamo < 0) {
+            cout << "ERROR: La fecha de devolucion no puede ser anterior a la fecha del prestamo." << endl;
+            continue;
+    }
+    break;
+}
     p.setIdSocio(idSocio);
     p.setIdLibro(idLibro);
     p.setFechaPrestamo(fechaPrestamo);
@@ -397,3 +426,108 @@ void PrestamoManager::PrestamoCout(Prestamo p) {
     cout << "-------------------------------------" << endl;
 }
 
+void PrestamoManager::RankingLibrosMasPrestados() {
+
+    FILE* arch = fopen("prestamos.dat", "rb");
+    if (!arch) {
+        cout << "No hay prestamos cargados." << endl;
+        return;
+    }
+
+    Prestamo p;
+
+    // Máximo de 100 libros distintos encontrados (suficiente para tu proyecto)
+    int ids[100];
+    int conts[100];
+    int cant = 0; // cantidad de libros distintos encontrados
+
+    // Inicializo
+    for (int i = 0; i < 100; i++) {
+        ids[i] = 0;
+        conts[i] = 0;
+    }
+
+    // -------------------------------
+    // 1) LEER PRESTAMOS Y CONTAR
+    // -------------------------------
+    while (fread(&p, sizeof(Prestamo), 1, arch) == 1) {
+
+        int idLibro = p.getIdLibro();
+
+        // Buscar si ya existe ese libro
+        int pos = -1;
+        for (int i = 0; i < cant; i++) {
+            if (ids[i] == idLibro) {
+                pos = i;
+                break;
+            }
+        }
+
+        if (pos == -1) {
+            // Nuevo libro encontrado
+            ids[cant] = idLibro;
+            conts[cant] = 1;
+            cant++;
+        }
+        else {
+            // Libro ya registrado -> sumar 1
+            conts[pos]++;
+        }
+    }
+    fclose(arch);
+
+    if (cant == 0) {
+        cout << "No hay informacion suficiente para hacer un ranking." << endl;
+        return;
+    }
+
+    // -------------------------------
+    // 2) ORDENAR POR BUBBLE SORT (MÁS PRESTADOS PRIMERO)
+    // -------------------------------
+    for (int i = 0; i < cant - 1; i++) {
+        for (int j = 0; j < cant - 1 - i; j++) {
+            if (conts[j] < conts[j + 1]) {
+                // Intercambiar contadores
+                int aux = conts[j];
+                conts[j] = conts[j + 1];
+                conts[j + 1] = aux;
+
+                // Intercambiar IDs a la par
+                int aux2 = ids[j];
+                ids[j] = ids[j + 1];
+                ids[j + 1] = aux2;
+            }
+        }
+    }
+
+    // -------------------------------
+    // 3) MOSTRAR SOLO TOP 10
+    // -------------------------------
+    int limite = (cant < 10 ? cant : 10);
+
+    cout << "===== TOP " << limite << " LIBROS MAS PRESTADOS =====" << endl;
+
+    for (int i = 0; i < limite; i++) {
+        int idBuscado = ids[i];
+        char titulo[40] = "Titulo no encontrado";
+
+        // Buscar el título en libros.dat
+        FILE* archLib = fopen("libros.dat", "rb");
+        if (archLib) {
+            Libro lib;
+            while (fread(&lib, sizeof(Libro), 1, archLib) == 1) {
+                if (lib.getId() == idBuscado) {
+                    strcpy(titulo, lib.getTitulo());
+                    break;
+                }
+            }
+            fclose(archLib);
+        }
+
+        cout << i + 1 << ") ID Libro: " << idBuscado
+             << " | Titulo: " << titulo
+             << " | Veces prestado: " << conts[i] << endl;
+    }
+
+    cout << "=======================================" << endl;
+}
