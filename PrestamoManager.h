@@ -9,5 +9,6 @@ public:
     void DevolucionPrestamo();
     void BorrarPrestamo();
     void PrestamoCout(Prestamo p);
+    void RankingLibrosMasPrestados();
 
 };

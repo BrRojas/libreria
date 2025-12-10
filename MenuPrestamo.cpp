@@ -20,7 +20,7 @@ static void MostrarMenuPrestamo() {
     rlutil::locate(x, y + 6); cout << "3) Buscar prestamo por ID del socio";
     rlutil::locate(x, y + 7); cout << "4) Devolucion de prestamo por ID";
     rlutil::locate(x, y + 8); cout << "5) Eliminar prestamo por ID";
-
+    rlutil::locate(x, y + 9); cout << "6) Reporte de libros mas prestados";
     rlutil::setColor(rlutil::LIGHTRED);
     rlutil::locate(x, y + 10); cout << "0) Salir";
 
@@ -61,6 +61,11 @@ void MenuPrestamo() {
         case 5:
             rlutil::cls();
             manager.BorrarPrestamo();
+            rlutil::anykey();
+            break;
+        case 6:
+            rlutil::cls();
+            manager.RankingLibrosMasPrestados();
             rlutil::anykey();
             break;
         case 0:

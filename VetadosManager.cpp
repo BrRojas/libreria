@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstring>
 #include <cstdio>
+#include <vector>
 using namespace std;
 
 
@@ -105,4 +106,58 @@ bool VetadosManager::EstaVetado(int idBuscado) {
 
     fclose(archivo);
     return false;
+}
+
+void VetadosManager::CancelarVeto() {
+    int id;
+    cout << "Ingresar el ID del socio a quitar del veto: ";
+    cin >> id;
+
+    while (id <= 0) {
+        cout << "ID invalido. Ingrese un numero mayor a 0: ";
+        cin >> id;
+    }
+
+    FILE* archivo = fopen("Vetados.dat", "rb");
+    if (!archivo) {
+        cout << "No existe archivo de vetados o esta vacío." << endl;
+        return;
+    }
+
+    vector<Vetados> lista;
+    Vetados aux;
+    bool encontrado = false;
+
+    // Leer todos los vetados
+    while (fread(&aux, sizeof(Vetados), 1, archivo) == 1) {
+        if (aux.getIdVetados() == id) {
+            encontrado = true;
+            cout << "El socio con ID " << id << " estaba vetado y será removido." << endl;
+            // NO lo agregamos → lo eliminamos
+        } else {
+            lista.push_back(aux);  // Guardamos el resto
+        }
+    }
+
+    fclose(archivo);
+
+    if (!encontrado) {
+        cout << "El ID no se encuentra en la lista de vetados." << endl;
+        return;
+    }
+
+    // Reescribir archivo sin el vetado eliminado
+    archivo = fopen("Vetados.dat", "wb");
+    if (!archivo) {
+        cout << "Error al abrir Vetados.dat para reescribir." << endl;
+        return;
+    }
+
+    for (const Vetados& v : lista) {
+        fwrite(&v, sizeof(Vetados), 1, archivo);
+    }
+
+    fclose(archivo);
+
+    cout << "El veto ha sido cancelado correctamente." << endl;
 }

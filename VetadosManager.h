@@ -10,5 +10,7 @@ class VetadosManager{
         void MostrarVetados();
         void BuscarPorID();
         bool EstaVetado(int id);
+        void CancelarVeto();
+
 };
 

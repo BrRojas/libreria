@@ -24,6 +24,7 @@ void MenuVetados() {
         rlutil::locate(x, y + 4); cout << "1) Cargar vetado";
         rlutil::locate(x, y + 5); cout << "2) Mostrar lista";
         rlutil::locate(x, y + 6); cout << "3) Buscar por ID";
+        rlutil::locate(x, y + 7); cout << "4) Cancelar veto por ID";
 
         rlutil::setColor(rlutil::LIGHTRED);
         rlutil::locate(x, y + 8); cout << "0) Salir";
@@ -50,7 +51,11 @@ void MenuVetados() {
                 vet.BuscarPorID();
                 rlutil::anykey();
                 break;
-
+            case 4:
+                rlutil::cls();
+                vet.CancelarVeto();
+                rlutil::anykey();
+                break;
             case 0:
                 break;
 
