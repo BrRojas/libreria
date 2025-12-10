@@ -22,15 +22,16 @@ static void MostrarMenuLibro() {
     rlutil::locate(x, y + 8); cout << "5) Editar libro por ID";
     rlutil::locate(x, y + 9); cout << "6) Buscar libros por genero";
     rlutil::locate(x, y + 10); cout << "7) Buscar libros por titulo";
+    rlutil::locate(x, y + 11); cout << "8) Buscar libros por ISBN";
 
     rlutil::setColor(rlutil::YELLOW);
-    rlutil::locate(x, y + 11); cout << "8) Reporte";
+    rlutil::locate(x, y + 12); cout << "9) Reporte";
 
     rlutil::setColor(rlutil::LIGHTRED);
-    rlutil::locate(x, y + 13); cout << "0) Salir";
+    rlutil::locate(x, y + 15); cout << "0) Salir";
 
     rlutil::resetColor();
-    rlutil::locate(x, y + 112);
+    rlutil::locate(x, y + 115);
 }
 
 void MenuLibro() {
@@ -79,6 +80,11 @@ void MenuLibro() {
             rlutil::anykey();
             break;
         case 8:
+            rlutil::cls();
+            manager.BuscarPorIsbn();
+            rlutil::anykey();
+            break;
+        case 9:
             rlutil::cls();
             manager.ReporteLibrosStock();
             rlutil::anykey();

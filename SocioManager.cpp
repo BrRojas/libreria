@@ -12,7 +12,6 @@ void SocioManager::CargarSocio() {
     int id;
     char nombre [30];
     char telefono[15];
-    char estado;
     char donacion;
     cout << "Ingrese ID de socio: ";
     cin >> id;
@@ -43,15 +42,6 @@ void SocioManager::CargarSocio() {
     cin.getline(telefono, 15);
     s.setTelefono(telefono);
 
-
-    cout << "¿Está activo? (1=si, 0=no): ";
-    cin >> estado;
-
-    while (estado != '0' && estado != '1') {
-        cout << "ERROR. Ingrese solo 1 o 0: ";
-        cin >> estado;
-    }
-    s.setEstado(estado);
 
     cout << "¿Incluye donacion? (1=si, 0=no): ";
     cin >> donacion;
@@ -94,7 +84,6 @@ void SocioManager::MostrarSocios() {
         cout << "Categoria: " << s.getCategoria() << endl;
         cout << "Puntos: " << s.getPuntos() << endl;
         cout << "Telefono: " << s.getTelefono() << endl;
-        cout << "Estado: " << (s.getEstado() ? "Activo" : "Inactivo") << endl;
         cout << "Incluye donacion: " << (s.getIncluyeDonacion() ? "Si" : "No") << endl;
         cout << "----------------------------" << endl;
     }
@@ -122,7 +111,6 @@ void SocioManager::BuscarIdSocio() {
             cout << "Nombre: " << s.getNombre() << endl;
             cout << "Categoria: " << s.getCategoria() << endl;
             cout << "Telefono: " << s.getTelefono() << endl;
-            cout << "Estado: " << (s.getEstado() ? "Activo" : "Inactivo") << endl;
             cout << "Incluye donacion: " << (s.getIncluyeDonacion() ? "Si" : "No") << endl;
             VetadosManager vm;
             if (vm.EstaVetado(buscado)) {
@@ -270,7 +258,6 @@ void SocioManager::ModificarSocio() {
     cout << "=== DATOS ACTUALES ===" << endl;
     cout << "Nombre: " << s.getNombre() << endl;
     cout << "Telefono: " << s.getTelefono() << endl;
-    cout << "Estado (1 activo / 0 inactivo): " << s.getEstado() << endl;
     cout << "Incluye donacion (1 si / 0 no): " << s.getIncluyeDonacion() << endl;
     cout << "Puntos: " << s.getPuntos() << endl;
     cout << "Categoria: " << s.getCategoria() << endl;
@@ -298,20 +285,6 @@ void SocioManager::ModificarSocio() {
         cout << "Nuevo telefono: ";
         cin.getline(NuevoDato, 15);
         s.setTelefono(NuevoDato);
-    }
-
-    // Modificamos estado
-    cout << "¿Modificar estado (1 activo / 0 inactivo)? (s/n): ";
-    cin >> opcion;
-    if (opcion == 's' || opcion == 'S') {
-        char est;
-        cout << "Nuevo estado: ";
-        cin >> est;
-        while (est != '0' && est != '1') {
-            cout << "ERROR. Ingrese 1 o 0: ";
-            cin >> est;
-        }
-        s.setEstado(est);
     }
 
     // Modificamos donacion
