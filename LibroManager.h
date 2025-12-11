@@ -19,6 +19,5 @@ public:
     //filtros
     void BuscarPorGenero();
     void BuscarPorTitulo();
-    void BuscarPorIsbn();
 
 };

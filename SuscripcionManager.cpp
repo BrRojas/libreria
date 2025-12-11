@@ -223,7 +223,7 @@ void SuscripcionManager::SuscripcionCout(Suscripcion s) {
     cout << "ID Socio: " << s.getIdSocio() << " | Nombre: " << nombreSocio << endl;
     cout << "Inicio: "; s.getFechaInicio().mostrar(); cout << endl;
     cout << "Fin: "; s.getFechaFin().mostrar(); cout << endl;
-    cout << "Estado: " << (s.getEstado() ? "Activo" : "Inactivo") << endl;
+    cout << "Estado: " << (s.getEstado() ? 1 : 0) << endl;
     cout << "----------------------------";
 }
 

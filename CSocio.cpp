@@ -9,6 +9,7 @@ Socio::Socio(){
     strcpy(Nombre, "SIN NOMBRE");
     strcpy(Categoria, "S/C");
     strcpy(Telefono, "000000000");
+    Estado = '0';
     IncluyeDonacion = '0';
 }
 void Socio::setIdSocio(int id){
@@ -22,6 +23,9 @@ void Socio::setCategoria(const char *Cat){
 }
 void Socio::setTelefono(const char *Tel) {
     strcpy(Telefono, Tel);
+}
+void Socio::setEstado(char e) {
+    Estado = e;
 }
 void Socio::setIncluyeDonacion(char d) {
     IncluyeDonacion = d;
@@ -40,6 +44,9 @@ const char *Socio::getCategoria(){
 }
 const char *Socio::getTelefono(){
     return Telefono;
+}
+char Socio::getEstado(){
+    return Estado;
 }
 char Socio::getIncluyeDonacion(){
     return IncluyeDonacion;

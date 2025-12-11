@@ -366,8 +366,6 @@ void PrestamoManager::BorrarPrestamo() {
 
     cout << "Prestamo borrado completamente del sistema." << endl;
     cout << "IDs reasignados para mantener secuencia consecutiva." << endl;
-
-    //falta agregar el posible prestamo a un .dat
 }
 
 void PrestamoManager::PrestamoCout(Prestamo p) {

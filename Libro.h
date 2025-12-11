@@ -5,6 +5,8 @@ class Libro {
     private:
         char isbn[20], genero[35], titulo[40], editorial[35];
         int cantidadEjemplares, id, idAutor, vecesPrestado;
+        bool estado;
+        int stock;
     public:
         Libro();
         char* getIsbn();
@@ -14,7 +16,9 @@ class Libro {
         char* getEditorial();
         int getCantidadEjemplares();
         int getVecesPrestado();
+        bool getEstado();
         int getIdAutor();
+        int getStock();
         void setIsbn(char* isbn);
         void setId(int id);
         void setGenero(char* genero);
@@ -22,5 +26,7 @@ class Libro {
         void setEditorial(char* editorial);
         void setCantidadEjemplares(int cantidadEjemplares);
         void setVecesPrestado(int vecesPrestado);
+        void setEstado(bool estado);
         void setIdAutor(int idAutor);
+        void setStock (int stock);
 };
