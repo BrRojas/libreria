@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include "LibroManager.h"
+#include "Autor.h"
 #include <vector>
 #include <cstring>
 #include <cctype>
@@ -407,16 +408,63 @@ void LibroManager::BuscarPorTitulo() {
     if (!alguno) cout << "No se encontraron libros para ese titulo." << endl;
 }
 
+void LibroManager::BuscarPorIsbn() {
+    char isbnBuscado[20];
+
+    cin.ignore();
+    cout << "Ingrese el ISBN a buscar: ";
+    cin.getline(isbnBuscado, 20);
+
+    FILE* archivo = fopen("libros.dat", "rb");
+    if (archivo == nullptr) {
+        cout << "No hay libros cargados." << endl;
+        return;
+    }
+
+    Libro aux;
+    bool alguno = false;
+
+    cout << "\n=== LIBROS QUE COINCIDEN CON EL ISBN: " << isbnBuscado << " ===\n";
+
+    while (fread(&aux, sizeof(Libro), 1, archivo) == 1) {
+        if (aux.getCantidadEjemplares() > 0 &&
+            contieneTextoCI(aux.getIsbn(), isbnBuscado)) {
+            alguno = true;
+            LibroCout(aux);
+        }
+    }
+
+    fclose(archivo);
+
+    if (!alguno) cout << "No se encontraron libros para ese ISBN." << endl;
+}
+
 void LibroManager::LibroCout(Libro l) {
+
+// ======= BUSCAR NOMBRE DEL SOCIO =======
+char nombreAutor[30] = "Desconocido";
+
+FILE* fAut = fopen("Autores.dat", "rb");
+if (fAut != nullptr) {
+    Autor a;
+    while (fread(&a, sizeof(Autor), 1, fAut) == 1) {
+        if (a.getIdAutor() == l.getIdAutor()) {
+            strcpy(nombreAutor, a.getNombre());
+            break;
+        }
+    }
+    fclose(fAut);
+}
+
     cout << endl << "ID: " << l.getId() << endl;
     cout << "Titulo: " << l.getTitulo() << endl;
-    cout << "Autor: " << l.getIdAutor() << endl;
+    cout << "AutorID: " << l.getIdAutor() << " | Nombre: " << nombreAutor << endl;
     cout << "ISBN: " << l.getIsbn() << endl;
     cout << "Genero: " << l.getGenero() << endl;
     cout << "Editorial: " << l.getEditorial() << endl;
     cout << "Cantidad de ejemplares: " << l.getCantidadEjemplares() << endl;
     cout << "Veces Prestado: " << l.getVecesPrestado() << endl;
-    cout << "Estado: " << l.getEstado() << endl;
+
     cout << "----------------------------";
 }
 

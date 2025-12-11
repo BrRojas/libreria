@@ -21,10 +21,10 @@ static void MostrarMenuSocio() {
     rlutil::locate(x, y + 7); cout << "4) Sumar o restar puntos manualmente";
     rlutil::locate(x, y + 8); cout << "5) Modificar datos del socio";
     rlutil::setColor(rlutil::LIGHTRED);
-    rlutil::locate(x, y + 9); cout << "0) Salir";
+    rlutil::locate(x, y + 10); cout << "0) Salir";
 
     rlutil::resetColor();
-    rlutil::locate(x, y + 11);
+    rlutil::locate(x, y + 12);
 }
 
 void MenuSocio() {
@@ -33,7 +33,7 @@ void MenuSocio() {
 
     do {
         MostrarMenuSocio();
-        cout << "Opcion: "<< endl;
+        cout << "Opcion: ";
         cin >> opcion;
 
         switch(opcion) {

@@ -22,10 +22,10 @@ static void MostrarMenuPrestamo() {
     rlutil::locate(x, y + 8); cout << "5) Eliminar prestamo por ID";
     rlutil::locate(x, y + 9); cout << "6) Reporte de libros mas prestados";
     rlutil::setColor(rlutil::LIGHTRED);
-    rlutil::locate(x, y + 10); cout << "0) Salir";
+    rlutil::locate(x, y + 11); cout << "0) Salir";
 
     rlutil::resetColor();
-    rlutil::locate(x, y + 12);
+    rlutil::locate(x, y + 13);
 }
 
 void MenuPrestamo() {
@@ -34,7 +34,7 @@ void MenuPrestamo() {
 
     do {
         MostrarMenuPrestamo();
-        rlutil::locate(4, 12); cout << "Opcion: "<< endl;
+        cout << "Opcion: ";
         cin >> opcion;
 
         switch(opcion) {

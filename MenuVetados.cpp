@@ -27,10 +27,10 @@ void MenuVetados() {
         rlutil::locate(x, y + 7); cout << "4) Cancelar veto por ID";
 
         rlutil::setColor(rlutil::LIGHTRED);
-        rlutil::locate(x, y + 8); cout << "0) Salir";
+        rlutil::locate(x, y + 9); cout << "0) Salir";
 
         rlutil::resetColor();
-        rlutil::locate(x, y + 10); cout << "Seleccione una opcion: ";
+        rlutil::locate(x, y + 11); cout << "Seleccione una opcion: ";
         cin >> opcion;
 
         switch(opcion) {

@@ -35,11 +35,11 @@ static void mostrarMenuSuscripcion() {
     cout << "6) Reporte de suscripciones activas / inactivas";
 
     rlutil::setColor(rlutil::LIGHTRED);
-    rlutil::locate(x, y + 11);
+    rlutil::locate(x, y + 12);
     cout << "0) Volver";
 
     rlutil::resetColor();
-    rlutil::locate(x, y + 13);
+    rlutil::locate(x, y + 14);
 }
 
 void MenuSuscripcion() {
