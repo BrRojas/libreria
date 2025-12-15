@@ -17,7 +17,12 @@ void SocioManager::CargarSocio() {
     cout << "Ingrese ID de socio: ";
     cin >> id;
 
-    // Validar ID punto que marco el profesor
+    while (id < 0) {
+    cout << "ERROR: El ID debe ser un numero positivo mayor a 0: ";
+    cin >> id;
+}
+
+    // Validamos ID punto que marco el profesor
     FILE* p = fopen("Socios.dat", "rb");
     if (p != NULL) {
         Socio temp;

@@ -86,7 +86,7 @@ void SuscripcionManager::CargarSuscripcion() {
     }
 
 
-    cout << "Fecha de inicio: " << endl;
+    cout << "INICIA SU SUSCRPCION!" << endl;
     ini.cargarFechaActual();   // fecha de inicio = hoy
     fin = ini;                 // copiamos inicio en fin para modificar
     fin.sumarDias(41);

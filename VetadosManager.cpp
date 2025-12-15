@@ -128,12 +128,12 @@ void VetadosManager::CancelarVeto() {
     Vetados aux;
     bool encontrado = false;
 
-    // Leer todos los vetados
+    // Leemos todos los vetados
     while (fread(&aux, sizeof(Vetados), 1, archivo) == 1) {
         if (aux.getIdVetados() == id) {
             encontrado = true;
             cout << "El socio con ID " << id << " estaba vetado y será removido." << endl;
-            // NO lo agregamos → lo eliminamos
+            // lo eliminamos
         } else {
             lista.push_back(aux);  // Guardamos el resto
         }

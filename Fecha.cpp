@@ -90,7 +90,7 @@ int Fecha::getDia() { return dia; }
 int Fecha::getMes() { return mes; }
 int Fecha::getAnio() { return anio; }
 long Fecha::diasEntre(const Fecha& otra) const {
-    // Convertir ambas fechas a “día absoluto”
+    // Convertimos ambas fechas a “día absoluto”
     auto diasAbs = [](const Fecha& f) {
         int a = f.anio;
         int m = f.mes;
